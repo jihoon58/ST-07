@@ -29,7 +29,7 @@ namespace ST07.World
 
             if (stats != null)
             {
-                stats.RestoreFatigueFull();
+                stats.FatigueFull();
             }
 
             // 세이브 지점
