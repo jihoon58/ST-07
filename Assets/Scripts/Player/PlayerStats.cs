@@ -8,12 +8,11 @@ namespace ST07.Player
         public float maxHealth = 100f;
         public float currentHealth = 100f;
 
-        [Header("Fatigue (Days remaining without sleep)")]
-        [Tooltip("수면 없이 버틸 수 있는 남은 일수. 0 이하 → 사망.")]
-        public float maxFatigueDays = 2f;
-        public float currentFatigueDays = 2f;
+        [Header("Fatigue")]
+        public float maxFatigueSeconds = Systems.TimeOfDaySystem.dayLengthSeconds;
+        public float currentFatigueSeconds = Systems.TimeOfDaySystem.dayLengthSeconds;
 
-        public bool IsDead => currentHealth <= 0f || currentFatigueDays <= 0f;
+        public bool IsDead => currentHealth <= 0f || currentFatigueSeconds <= 0f;
 
         public void ApplyDamage(float amount)
         {
@@ -21,19 +20,19 @@ namespace ST07.Player
             currentHealth = Mathf.Max(0f, currentHealth - amount);
         }
 
-        public void HealFull()
+        public void HealthFull()
         {
             currentHealth = maxHealth;
         }
 
-        public void RestoreFatigueFull()
+        public void FatigueFull()
         {
-            currentFatigueDays = maxFatigueDays;
+            currentFatigueSeconds = maxFatigueSeconds;
         }
 
         public void ConsumeFatigueByDay(float dayFraction)
         {
-            currentFatigueDays -= Mathf.Max(0f, dayFraction);
+            currentFatigueSeconds -= Mathf.Max(0f, dayFraction);
         }
     }
 }
