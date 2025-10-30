@@ -30,7 +30,7 @@ namespace ST07.Saving
             if (time != null)
             {
                 data.dayCount = time.dayCount;
-                data.dayTime01 = time.dayTime01;
+                data.dayTime01 = time.currentTimeHours;
             }
 
             var player = FindFirstObjectByType<PlayerStats>();
@@ -38,7 +38,7 @@ namespace ST07.Saving
             {
                 data.playerPosition = player.transform.position;
                 data.playerHealth = player.currentHealth;
-                data.playerFatigueDays = player.currentFatigueDays;
+                data.playerFatigueDays = player.currentFatigueSeconds;
             }
 
             string json = JsonUtility.ToJson(data, true);
@@ -67,7 +67,7 @@ namespace ST07.Saving
             if (time != null)
             {
                 time.dayCount = data.dayCount;
-                time.dayTime01 = Mathf.Repeat(data.dayTime01, 1f);
+                time.currentTimeHours = Mathf.Repeat(data.dayTime01, 1f);
             }
 
             var player = FindFirstObjectByType<PlayerStats>();
@@ -75,7 +75,7 @@ namespace ST07.Saving
             {
                 player.transform.position = data.playerPosition;
                 player.currentHealth = Mathf.Clamp(data.playerHealth, 0f, player.maxHealth);
-                player.currentFatigueDays = Mathf.Clamp(data.playerFatigueDays, 0f, player.maxFatigueDays);
+                player.currentFatigueSeconds = Mathf.Clamp(data.playerFatigueDays, 0f, player.maxFatigueSeconds);
             }
 
 #if UNITY_EDITOR
