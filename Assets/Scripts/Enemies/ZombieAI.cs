@@ -139,8 +139,12 @@ namespace ST07.Enemies
             if (stats != null)
             {
                 stats.ApplyDamage(GetEffectiveDamage());
+                OnAttackSuccess();
             }
         }
+
+        // 공격 성공 시 파생에서 행동 커스텀 가능
+        protected virtual void OnAttackSuccess() { }
 
         public void OnDamaged(float damage)
         {
