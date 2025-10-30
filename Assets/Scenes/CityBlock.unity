@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 13032397}
   - component: {fileID: 13032396}
   - component: {fileID: 13032395}
+  - component: {fileID: 13032399}
   m_Layer: 0
   m_Name: RunnerZombie
   m_TagString: Untagged
@@ -169,7 +170,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -271,6 +272,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13032393}
   m_Mesh: {fileID: 0}
+--- !u!114 &13032399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13032393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50ac251c6208bc4f946d25f5de52a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 6.6000004
+  attackRange: 0.8
+  attackDamage: 10
+  attackCooldown: 1.2
+  viewDistance: 8
+  viewAngle: 110
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {fileID: 0}
+  headForAlertIcon: {fileID: 0}
+  alertIndicatorPrefab: {fileID: 0}
+  nightBuffs: {fileID: 0}
+  dashSpeedMultiplier: 3
 --- !u!1 &335167898
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +311,7 @@ GameObject:
   - component: {fileID: 335167902}
   - component: {fileID: 335167901}
   - component: {fileID: 335167900}
+  - component: {fileID: 335167904}
   m_Layer: 0
   m_Name: BiterZombie
   m_TagString: Untagged
@@ -321,7 +349,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -423,6 +451,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335167898}
   m_Mesh: {fileID: 0}
+--- !u!114 &335167904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335167898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31080b7f7ae9d6d42a9c007f542fa21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 2.2
+  attackRange: 0.8
+  attackDamage: 9999
+  attackCooldown: 1.2
+  viewDistance: 8
+  viewAngle: 110
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {fileID: 0}
+  headForAlertIcon: {fileID: 0}
+  alertIndicatorPrefab: {fileID: 0}
+  nightBuffs: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,8 +843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  maxFatigueDays: 2
-  currentFatigueDays: 2
+  maxFatigueSeconds: 900
+  currentFatigueSeconds: 900
 --- !u!114 &1764489833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +1007,7 @@ GameObject:
   - component: {fileID: 1863407686}
   - component: {fileID: 1863407685}
   - component: {fileID: 1863407684}
+  - component: {fileID: 1863407688}
   m_Layer: 0
   m_Name: WalkerZombie
   m_TagString: Untagged
@@ -991,7 +1045,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1093,6 +1147,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863407682}
   m_Mesh: {fileID: 0}
+--- !u!114 &1863407688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863407682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb9ca4a47ef03241b4f59557b4c8e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 2.2
+  attackRange: 0.8
+  attackDamage: 10
+  attackCooldown: 1.2
+  viewDistance: 8
+  viewAngle: 110
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {fileID: 0}
+  headForAlertIcon: {fileID: 0}
+  alertIndicatorPrefab: {fileID: 0}
+  nightBuffs: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
