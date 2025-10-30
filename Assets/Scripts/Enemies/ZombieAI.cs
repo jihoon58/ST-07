@@ -114,7 +114,7 @@ namespace ST07.Enemies
 
         private float GetEffectiveSpeed()
         {
-            if (timeSystem.IsNight && timeSystem != null && nightBuffs != null)
+            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
             {
                 return baseSpeed * nightBuffs.speedMultiplier;
             }
@@ -123,7 +123,7 @@ namespace ST07.Enemies
 
         private float GetEffectiveDamage()
         {
-            if (timeSystem.IsNight && timeSystem != null && nightBuffs != null)
+            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
             {
                 return attackDamage * nightBuffs.attackMultiplier;
             }
