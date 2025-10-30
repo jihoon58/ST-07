@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ST07.Items
 {
+    //??? 이해 못함 누군가 해주셈
     public enum ItemType
     {
         Food,
