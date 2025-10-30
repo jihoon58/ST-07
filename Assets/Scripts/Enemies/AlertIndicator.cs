@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ST07.Enemies
 {
+    //??? 이해 못함 누군가 해주셈
     public class AlertIndicator : MonoBehaviour
     {
         [Tooltip("경보 아이콘을 위아래로 살짝 띄우는 속도")]
