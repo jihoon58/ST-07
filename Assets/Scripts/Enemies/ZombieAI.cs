@@ -24,7 +24,7 @@ namespace ST07.Enemies
         public Transform headForAlertIcon;
         public GameObject alertIndicatorPrefab;
         public NightBuffs nightBuffs;
-
+        
         private Rigidbody2D body;
         private TimeOfDaySystem timeSystem;
         private State state = State.Idle;
@@ -65,7 +65,7 @@ namespace ST07.Enemies
             float dist = Vector2.Distance(transform.position, target.position);
             if (dist <= attackRange)
             {
-                state = State.Attack;
+                state = State.Attack;   
             }
             else
             {
@@ -96,11 +96,13 @@ namespace ST07.Enemies
 
         private bool CanSeeTarget()
         {
+            //거리 체크
             if (target == null) return false;
             Vector2 toTarget = (target.position - transform.position);
             if (toTarget.magnitude > viewDistance) return false;
-
-            float angle = Vector2.Angle(transform.right, toTarget.normalized);
+            
+            //각도 체크
+            float angle = Vector2.Angle(transform.forward, toTarget.normalized);
             if (angle > viewAngle * 0.5f) return false;
 
             // 시야 차단 검사
@@ -112,22 +114,20 @@ namespace ST07.Enemies
 
         private float GetEffectiveSpeed()
         {
-            float mul = 1f;
-            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
+            if (timeSystem.IsNight && timeSystem != null && nightBuffs != null)
             {
-                mul *= nightBuffs.speedMultiplier;
+                return baseSpeed * nightBuffs.speedMultiplier;
             }
-            return baseSpeed * mul;
+            return baseSpeed;
         }
 
         private float GetEffectiveDamage()
         {
-            float mul = 1f;
-            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
+            if (timeSystem.IsNight && timeSystem != null && nightBuffs != null)
             {
-                mul *= nightBuffs.attackMultiplier;
+                return attackDamage * nightBuffs.attackMultiplier;
             }
-            return attackDamage * mul;
+            return attackDamage;
         }
 
         private void TryAttack()
