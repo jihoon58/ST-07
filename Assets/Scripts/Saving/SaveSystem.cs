@@ -12,33 +12,37 @@ namespace ST07.Saving
         public class SaveData
         {
             public int dayCount;
-            public float dayTime01;
-            public Vector3 playerPosition;
+            public float dayTime;
+            public Vector3 respawnPosition;
             public float playerHealth;
-            public float playerFatigueDays;
+
+            // public SaveData(int dayCount, float dayTime, Vector3 respawnPosition, float playerHealth){
+            //     this.dayCount = dayCount;
+            //     this.dayTime = dayTime;
+            //     this.respawnPosition = respawnPosition;
+            //     this.playerHealth = playerHealth;
+            // }
         }
 
-        public string fileName = "save_slot_01.json";
+        public string fileName = "saveFile.json";
 
         private string FilePath => Path.Combine(Application.persistentDataPath, fileName);
 
         public void Save()
         {
-            var data = new SaveData();
+            SaveData data = new SaveData();
 
-            var time = FindFirstObjectByType<TimeOfDaySystem>();
-            if (time != null)
+            var timeSystem = FindFirstObjectByType<TimeOfDaySystem>();
+            if (timeSystem != null)
             {
-                data.dayCount = time.dayCount;
-                data.dayTime01 = time.currentTimeHours;
+                data.dayCount = timeSystem.dayCount;
+                data.dayTime = timeSystem.currentTimeHours;
             }
 
             var player = FindFirstObjectByType<PlayerStats>();
             if (player != null)
             {
-                data.playerPosition = player.transform.position;
                 data.playerHealth = player.currentHealth;
-                data.playerFatigueDays = player.currentFatigueSeconds;
             }
 
             string json = JsonUtility.ToJson(data, true);
@@ -67,15 +71,14 @@ namespace ST07.Saving
             if (time != null)
             {
                 time.dayCount = data.dayCount;
-                time.currentTimeHours = Mathf.Repeat(data.dayTime01, 1f);
+                time.currentTimeHours = Mathf.Repeat(data.dayTime, 1f);
             }
 
             var player = FindFirstObjectByType<PlayerStats>();
             if (player != null)
             {
-                player.transform.position = data.playerPosition;
+                player.transform.position = data.respawnPosition;
                 player.currentHealth = Mathf.Clamp(data.playerHealth, 0f, player.maxHealth);
-                player.currentFatigueSeconds = Mathf.Clamp(data.playerFatigueDays, 0f, player.maxFatigueSeconds);
             }
 
 #if UNITY_EDITOR

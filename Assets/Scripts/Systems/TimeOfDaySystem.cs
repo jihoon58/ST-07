@@ -98,6 +98,7 @@ namespace ST07.Systems
             if(hours>=24f){
                 for(int i = 0; i<hours/24;i++){
                     dayCount++;
+                    onNextDay?.Invoke();
                 }
                 currentTimeHours = Mathf.Repeat(currentTimeHours, 24f);
             }
