@@ -1,5 +1,6 @@
 using UnityEngine;
 using ST07.Systems;
+using Mono.Cecil;
 
 namespace ST07.Enemies
 {
@@ -13,6 +14,10 @@ namespace ST07.Enemies
         public float attackRange = 0.8f;
         public float attackDamage = 10f;
         public float attackCooldown = 1.2f;
+        
+        [Header("Health")]
+        public float maxHealth = 50f;
+        public float currentHealth;
 
         [Header("Detection")]
         public float viewDistance = 8f;
@@ -38,6 +43,15 @@ namespace ST07.Enemies
 
         private void Start()
         {
+            // 체력 초기화
+            currentHealth = maxHealth;
+            
+            var player = FindAnyObjectByType<PlayerController_M>();
+            if (player != null)
+            {
+                target = player.transform;
+            }
+
             timeSystem = FindFirstObjectByType<TimeOfDaySystem>();
             if (alertIndicatorPrefab != null && headForAlertIcon != null)
             {
@@ -148,12 +162,32 @@ namespace ST07.Enemies
 
         public void OnDamaged(float damage)
         {
+            // 이미 죽었으면 무시
+            if (currentHealth <= 0) return;
+            
+            // 체력 감소
+            currentHealth -= damage;
+            currentHealth = Mathf.Max(0f, currentHealth);
+            
+            // 체력이 0 이하면 죽음 처리
+            if (currentHealth <= 0)
+            {
+                Die();
+                return;
+            }
+            
             // 피격 시 어그로 유지/갱신: Chase로 전환
             if (target != null)
             {
                 state = State.Chase;
                 SetAlert(true);
             }
+        }
+        
+        private void Die()
+        {
+            // 좀비 제거
+            Destroy(gameObject);
         }
 
         private void SetAlert(bool on)
