@@ -142,7 +142,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -170,6 +170,8 @@ MonoBehaviour:
   attackRange: 0.8
   attackDamage: 9999
   attackCooldown: 1.2
+  maxHealth: 50
+  currentHealth: 0
   viewDistance: 8
   viewAngle: 110
   obstacleMask:

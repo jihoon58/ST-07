@@ -31,12 +31,12 @@ public class Bullet : MonoBehaviour
         
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.CompareTag("Zombie"))
+        if(collider.CompareTag("Zombie"))
         {
             // ZombieAI 컴포넌트 찾기
-            var zombieAI = collision.gameObject.GetComponent<ST07.Enemies.ZombieAI>();
+            var zombieAI = collider.gameObject.GetComponent<ST07.Enemies.ZombieAI>();
             if (zombieAI != null)
             {
                 // 데미지 적용
