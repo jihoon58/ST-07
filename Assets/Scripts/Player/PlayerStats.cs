@@ -1,3 +1,4 @@
+using ST07.Enemies;
 using UnityEngine;
 
 namespace ST07.Player
@@ -33,6 +34,23 @@ namespace ST07.Player
         public void ConsumeFatigueByDay(float dayFraction)
         {
             currentFatigueSeconds -= Mathf.Max(0f, dayFraction);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Zombie"))
+            {
+                // 충돌한 좀비에서 ZombieAI 컴포넌트 가져오기
+                var zombie = collision.gameObject.GetComponent<ST07.Enemies.ZombieAI>();
+
+                if (zombie != null)
+                {
+                    // 그 좀비의 attackDamage 사용
+                    ApplyDamage(zombie.attackDamage);
+                    Debug.Log($"좀비 타입: {zombie.GetType().Name}, 데미지: {zombie.attackDamage}");
+                    Debug.Log($"플레이어의 남은 체력: {currentHealth}");
+                }
+            }
         }
     }
 }
