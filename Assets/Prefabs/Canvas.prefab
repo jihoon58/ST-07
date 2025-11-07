@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 2158777093597574659}
   - component: {fileID: 2625830680846847833}
   - component: {fileID: 4419207364434105896}
-  - component: {fileID: 4262681683800251987}
-  - component: {fileID: 4458342108234884291}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -105,60 +103,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!50 &4262681683800251987
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170449725128341159}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4458342108234884291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170449725128341159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb9ca4a47ef03241b4f59557b4c8e47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 2.2
-  attackRange: 0.8
-  attackDamage: 10
-  attackCooldown: 1.2
-  maxHealth: 50
-  currentHealth: 0
-  viewDistance: 8
-  viewAngle: 110
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  target: {fileID: 0}
-  headForAlertIcon: {fileID: 0}
-  alertIndicatorPrefab: {fileID: 0}
-  nightBuffs: {fileID: 0}
 --- !u!1 &5431763282410743828
 GameObject:
   m_ObjectHideFlags: 0
