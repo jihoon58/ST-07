@@ -36,7 +36,7 @@ namespace ST07.World
             var save = FindFirstObjectByType<SaveSystem>();
             if (save != null)
             {
-                save.Save();
+                //save.Save();
             }
         }
     }
