@@ -15,6 +15,11 @@ namespace ST07.Enemies
         public float attackDamage = 10f;
         public float attackCooldown = 1.2f;
 
+        [Header("Night Buffs")]
+        public float healthMultiplier = 1.5f;
+        public float attackMultiplier = 2;
+        public float speedMultiplier = 1.2f;
+
         [Header("Health")]
         public float maxHealth = 50f;
         public float currentHealth;
@@ -33,7 +38,7 @@ namespace ST07.Enemies
         public Transform target;
         public Transform headForAlertIcon;
         public GameObject alertIndicatorPrefab;
-        public NightBuffs nightBuffs;
+        //public NightBuffs nightBuffs;
 
         [Header("Idle Sway (생동감 옵션)")]
         public float idleRadius = 0.6f;
@@ -172,15 +177,15 @@ namespace ST07.Enemies
 
         float GetEffectiveSpeed()
         {
-            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
-                return baseSpeed * nightBuffs.speedMultiplier;
+            if (timeSystem != null && timeSystem.IsNight)
+                return baseSpeed * speedMultiplier;
             return baseSpeed;
         }
 
         float GetEffectiveDamage()
         {
-            if (timeSystem != null && timeSystem.IsNight && nightBuffs != null)
-                return attackDamage * nightBuffs.attackMultiplier;
+            if (timeSystem != null && timeSystem.IsNight)
+                return attackDamage * attackMultiplier;
             return attackDamage;
         }
 

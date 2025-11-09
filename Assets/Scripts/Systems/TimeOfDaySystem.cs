@@ -87,6 +87,8 @@ namespace ST07.Systems
             //식사 처리해주세요.
             //HERE
 
+
+
             // 1차 수정 코드. 차후를 위해서 2차 수정코드로 개선
             // if(currentTimeHours >= 24f){
             //     currentTimeHours -= 24f;
