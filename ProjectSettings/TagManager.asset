@@ -48,11 +48,14 @@ TagManager:
   - name: NPC
     uniqueID: 3481069339
     locked: 0
-  - name: Enemy
-    uniqueID: 3820772447
+  - name: Bullet
+    uniqueID: 3262070199
     locked: 0
   - name: Player
     uniqueID: 2901754659
+    locked: 0
+  - name: Enemy
+    uniqueID: 3820772447
     locked: 0
   m_RenderingLayers:
   - Default
