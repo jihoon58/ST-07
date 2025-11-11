@@ -4,13 +4,15 @@ using ST07.Systems;
 public class FoodResearch : MonoBehaviour
 {
     [Header("Research State")]
-    [Range(0, 100)]public float FoodResearchPercent; // 식품연구 진행도(%)
+    [Range(0, 100)]public float FoodResearchPercent = 0; // 식품연구 진행도(%)
     public float FoodResearchPerDay = 8; // 하루당 식품연구진행도 상승률(%)
 
     [Header("Refs")]
-    public TimeOfDaySystem timeSystem; // 시간 시스템
-
     public EndingManager endingManager; // 엔딩 매니저
+
+    private void Start(){
+        endingManager = FindFirstObjectByType<EndingManager>();
+    }
 
     //연구 진행도 증가
     private void Update(){
