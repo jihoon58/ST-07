@@ -425,6 +425,8 @@ GameObject:
   - component: {fileID: 772008881}
   - component: {fileID: 772008880}
   - component: {fileID: 772008882}
+  - component: {fileID: 772008884}
+  - component: {fileID: 772008883}
   m_Layer: 0
   m_Name: Food Researcher
   m_TagString: Untagged
@@ -538,6 +540,36 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.015
+--- !u!114 &772008883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772008879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e411627310d9604aa536f488e38c9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodResearchPercent: 0
+  FoodResearchPerDay: 8
+  endingManager: {fileID: 0}
+--- !u!114 &772008884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772008879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e411627310d9604aa536f488e38c9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodResearchPercent: 0
+  FoodResearchPerDay: 8
+  endingManager: {fileID: 0}
 --- !u!1 &1274962456
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,8 +581,10 @@ GameObject:
   - component: {fileID: 1274962458}
   - component: {fileID: 1274962457}
   - component: {fileID: 1274962459}
+  - component: {fileID: 1274962461}
+  - component: {fileID: 1274962460}
   m_Layer: 0
-  m_Name: Apocalypticist
+  m_Name: DoomsDay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,6 +696,38 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 3.02
+--- !u!114 &1274962460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274962456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c72ad0a5256a74c8ae994ac2162706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doomsdayRecruited: 0
+  doomsdayRecruitDay: 0
+  timeSystem: {fileID: 0}
+  endingManager: {fileID: 0}
+--- !u!114 &1274962461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274962456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c72ad0a5256a74c8ae994ac2162706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doomsdayRecruited: 0
+  doomsdayRecruitDay: 0
+  timeSystem: {fileID: 0}
+  endingManager: {fileID: 0}
 --- !u!1001 &1617220248
 PrefabInstance:
   m_ObjectHideFlags: 0
