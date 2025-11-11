@@ -1,5 +1,6 @@
 using ST07.Enemies;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ST07.Player
 {
@@ -15,10 +16,16 @@ namespace ST07.Player
 
         public bool IsDead => currentHealth <= 0f || currentFatigueSeconds <= 0f;
 
+        [Header("Events")]
+        public UnityEvent onDead;
+
         public void ApplyDamage(float amount)
         {
             if (amount <= 0f || IsDead) return;
             currentHealth = Mathf.Max(0f, currentHealth - amount);
+            if(IsDead){
+                onDead?.Invoke();
+            }
         }
 
         public void HealthFull()
@@ -40,15 +47,15 @@ namespace ST07.Player
         {
             if (collision.gameObject.CompareTag("Zombie"))
             {
-                // Ãæµ¹ÇÑ Á»ºñ¿¡¼­ ZombieAI ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+                // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ñ¿¡¼ï¿½ ZombieAI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 var zombie = collision.gameObject.GetComponent<ST07.Enemies.ZombieAI>();
 
                 if (zombie != null)
                 {
-                    // ±× Á»ºñÀÇ attackDamage »ç¿ë
+                    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ attackDamage ï¿½ï¿½ï¿½
                     ApplyDamage(zombie.attackDamage);
-                    Debug.Log($"Á»ºñ Å¸ÀÔ: {zombie.GetType().Name}, µ¥¹ÌÁö: {zombie.attackDamage}");
-                    Debug.Log($"ÇÃ·¹ÀÌ¾îÀÇ ³²Àº Ã¼·Â: {currentHealth}");
+                    Debug.Log($"ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½: {zombie.GetType().Name}, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: {zombie.attackDamage}");
+                    Debug.Log($"ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½: {currentHealth}");
                 }
             }
         }
