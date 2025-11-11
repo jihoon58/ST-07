@@ -23,10 +23,10 @@ public class DoomsDay : MonoBehaviour
 
     // 다음 날 이벤트 처리
     public void OnNextDay(){
-        if(doomsdayRecruited){
-            doomsdayRecruitDay++;
-            if(doomsdayRecruitDay >= 3){
-                endingManager.DoomsdayEnding();
+        if(doomsdayRecruited){ 
+            doomsdayRecruitDay++; // 종말론자 영입하고부터 지난 날짜 증가
+            if(doomsdayRecruitDay >= 3){ // 종말론자 영입하고부터 3일이 지나면 엔딩 실행
+                endingManager.DoomsdayEnding(); // 종말론자 엔딩 실행
                 Destroy(gameObject); // 오브젝트 삭제
             }
         }
