@@ -29,6 +29,7 @@ public class EndingManager : MonoBehaviour
     public PlayerStats player; // 플레이어 상태. 이벤트 추가를 위해서 필요
 
     private void Start(){
+        player = FindFirstObjectByType<PlayerStats>();
         player.onDead.AddListener(OnPlayerDead);
     }
 
