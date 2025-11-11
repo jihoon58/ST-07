@@ -13,7 +13,9 @@ public class DoomsDay : MonoBehaviour
 	public EndingManager endingManager; // 엔딩 매니저
 
     private void Start(){
-        timeSystem.onNextDay.AddListener(OnNextDay);
+        timeSystem = FindFirstObjectByType<TimeOfDaySystem>();
+        endingManager = FindFirstObjectByType<EndingManager>();
+        timeSystem.onNextDay.AddListener(OnNextDay); // 이벤트 등록
     }
 
     // 영입 이벤트 처리
