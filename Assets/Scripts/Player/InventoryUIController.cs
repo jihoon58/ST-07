@@ -1,0 +1,103 @@
+using UnityEngine;
+using UnityEngine.UI;
+using ST07.Player; // Inventory, ItemStack 쓸려고
+
+public class InventoryUIController : MonoBehaviour
+{
+    [Header("Refs")]
+    public Inventory inventory;        // 플레이어 Inventory
+    public GameObject inventoryPanel;  // Panel_Inventory
+    public Transform slotsParent;      // GridParent (GridLayoutGroup 달린 애)
+    public GameObject slotPrefab;      // Slot 프리팹
+
+    [Header("Grid Size")]
+    public int columns = 7;
+    public int rows = 7;
+
+    [Header("Weight UI")]
+    public Slider weightSlider;
+    public Text weightText;
+
+    private InventorySlotUI[] slots;
+
+    private void Awake()
+    {
+        // 7x7 슬롯 자동 생성
+        CreateSlots();
+
+        // 시작할 때 패널 꺼두기
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if (inventory != null)
+            inventory.OnInventoryChanged += RefreshUI;
+    }
+
+    private void OnDisable()
+    {
+        if (inventory != null)
+            inventory.OnInventoryChanged -= RefreshUI;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (inventoryPanel == null) return;
+
+            bool show = !inventoryPanel.activeSelf;
+            inventoryPanel.SetActive(show);
+
+            if (show)
+                RefreshUI();   // 열릴 때 한 번 갱신
+        }
+    }
+
+    private void CreateSlots()
+    {
+        int total = columns * rows;
+        slots = new InventorySlotUI[total];
+
+        for (int i = 0; i < total; i++)
+        {
+            GameObject slotObj = Instantiate(slotPrefab, slotsParent);
+            InventorySlotUI ui = slotObj.GetComponent<InventorySlotUI>();
+            slots[i] = ui;
+            ui.Clear(); // 시작은 빈칸
+        }
+    }
+
+    private void RefreshUI()
+    {
+        if (inventory == null || slots == null) return;
+
+        var list = inventory.items;
+
+        // 인벤토리 내용 → 슬롯에 채우기
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < list.Count)
+                slots[i].Set(list[i]);
+            else
+                slots[i].Clear();
+        }
+
+        // 무게 표시
+        float cur = inventory.CurrentWeight;
+        float max = inventory.weightLimitKg;
+
+        if (weightSlider != null)
+        {
+            weightSlider.maxValue = max;
+            weightSlider.value = cur;
+        }
+
+        if (weightText != null)
+        {
+            weightText.text = $"{cur:0.0} / {max:0.0} kg";
+        }
+    }
+}

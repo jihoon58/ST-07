@@ -23,6 +23,8 @@ namespace ST07.Player
         [Header("Items")]
         public List<ItemStack> items = new List<ItemStack>();
 
+        public event System.Action OnInventoryChanged;
+
         public float CurrentWeight
         {
             get
@@ -62,6 +64,7 @@ namespace ST07.Player
                 }
             }
 
+
             while (quantity > 0)
             {
                 int toStack = Mathf.Min(item.maxStack, quantity);
@@ -69,7 +72,12 @@ namespace ST07.Player
                 quantity -= toStack;
             }
 
+            OnInventoryChanged?.Invoke();
             return true;
+
+
+
+           
         }
 
         public bool TryRemove(ItemDefinition item, int quantity)
@@ -89,7 +97,14 @@ namespace ST07.Player
                     }
                 }
             }
-            return remaining == 0;
+
+            if (remaining == 0)
+            {
+                OnInventoryChanged?.Invoke();  // ✅ 제거 성공하면 알림
+                return true;
+            }
+
+            return false;
         }
     }
 }
