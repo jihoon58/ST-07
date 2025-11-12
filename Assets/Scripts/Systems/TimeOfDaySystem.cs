@@ -5,45 +5,33 @@ namespace ST07.Systems
 {
     public class TimeOfDaySystem : MonoBehaviour
     {
-        //0-1단위가 효율적으로 보이지만 직관적으로 보기 위하여 0-24h 단위를 사용
-        [Header("Day/Night Length (seconds)")]
+        // 0-1단위가 효율적으로 보이지만 직관적으로 보기 위하여 0-24h 단위를 사용
+        [Header("One Day Length (seconds)")]
         [Tooltip("하루 길이 = 900초 = 15분")]
-        public const float dayLengthSeconds = 900f;
+        public static readonly float dayLengthSeconds = 900f; // 하루 길이(초)
 
         [Header("Night Range (hours)")]
-        [Range(0f, 24f)] public float nightStartHours = 18f;
-        [Range(0f, 24f)] public float nightEndHours = 7.5f;
+        [Range(0f, 24f)] public float nightStartHours = 18f; // 밤 시작 시간
+        [Range(0f, 24f)] public float nightEndHours = 7.5f; // 밤 종료 시간
 
-        [Header("State")]
-        [Range(0f, 24f)] public float currentTimeHours = 0f;
-        public int dayCount = 1; //1일차부터 시작
+        [Header("Current State")]
+        [Range(0f, 24f)] public float currentTimeHours = 9f; // 현재 시간 변수. AM 9시부터 시작
+        public int dayCount = 1; // 1일차부터 시작
 
         [Header("Events")]
-        public UnityEvent onNextDay; //다음 날
-        public UnityEvent onNightEnded; // 낮. 해당 이벤트 쓸모없을거 같기는 하지만 삭제하지는 않을게요. 마지막 점검 때도 사용하지 않으면 삭제하세요.
-        public UnityEvent onNightStarted;
+        public UnityEvent onNextDay; // 다음 날 이벤트
+        public UnityEvent onNightEnded; // 낮 시작 이벤트
+        public UnityEvent onNightStarted; // 밤 시작 이벤트
 
-        private bool wasNight;
+        // 밤 상태 관리를 위한 변수
+        private bool wasNight; // 이전 낮/밤 상태
 
         public bool IsNight
         {
             get
             {
-                return !(currentTimeHours < nightStartHours && currentTimeHours >= nightEndHours); //낮 조건
+                return !(currentTimeHours < nightStartHours && currentTimeHours >= nightEndHours); // 낮 조건
             }
-        }
-
-        private void Start()
-        {
-            //event 내용이라서 잘 모르지만 쓸모없어보이기에 주석 처리함. 아는사람 확인해주세요
-            // if (IsNight)
-            // {
-            //     onNightStarted?.Invoke();
-            // }
-            // else
-            // {
-            //     onDayStarted?.Invoke();
-            // }
         }
 
         private void Update()
@@ -54,24 +42,23 @@ namespace ST07.Systems
             //     return;
             // }
             
-            float delta = Time.deltaTime / dayLengthSeconds;
-            currentTimeHours += delta * 24;
+            currentTimeHours += (Time.deltaTime / dayLengthSeconds) * 24f;
 
+            // 하루 종료 처리
             if (currentTimeHours >= 24f)
             {
                 currentTimeHours -= 24f;
-                dayCount++;
-                // 새로운 하루 시작
-                onNextDay?.Invoke();
+                dayCount++; // 날짜 증가
+                onNextDay?.Invoke(); // 다음 날 이벤트 실행
             }
 
             if(IsNight != wasNight){
-                //wasNight를 쓴 이유는 IsNight의 계산을 생략하기 위해서이다.
+                // wasNight를 쓴 이유는 IsNight의 계산을 생략하기 위해서이다.
                 if(wasNight){
-                    onNightEnded?.Invoke();
+                    onNightEnded?.Invoke(); // 낮 시작 이벤트 실행
                 }
                 else{
-                    onNightStarted?.Invoke();
+                    onNightStarted?.Invoke(); // 밤 시작 이벤트 실행
                 }
             }
         }
@@ -85,7 +72,9 @@ namespace ST07.Systems
             // }
 
             //식사 처리해주세요.
-            //HERE
+            // HERE
+
+
 
             // 1차 수정 코드. 차후를 위해서 2차 수정코드로 개선
             // if(currentTimeHours >= 24f){
@@ -94,14 +83,13 @@ namespace ST07.Systems
             // }
 
             // 2차 수정 코드
-            currentTimeHours += hours;
-            if(hours>=24f){
-                for(int i = 0; i<hours/24;i++){
-                    dayCount++;
-                    onNextDay?.Invoke();
-                }
-                currentTimeHours = Mathf.Repeat(currentTimeHours, 24f);
+            currentTimeHours += hours; // 시간 증가
+            for(int i = 0; i<hours/24;i++){ // 24시간 초과 시 날짜 증가 처리
+                dayCount++;
+                onNextDay?.Invoke();
             }
+            currentTimeHours = Mathf.Repeat(currentTimeHours, 24f); // 시간 정규화
+            
         }
     }
 }
