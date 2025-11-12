@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         // 총알이 바라보는 방향(오른쪽)으로 발사
         rb.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1f);
     }
 
     // Update is called once per frame
