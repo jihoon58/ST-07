@@ -1,6 +1,7 @@
 using ST07.Items;
 using ST07.Player;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PickUpItem : MonoBehaviour
@@ -12,6 +13,9 @@ public class PickUpItem : MonoBehaviour
     [Header("Interaction")]
     public string playerTag = "Player";
     public GameObject hintUI;          // "F: 줍기" 안내(선택)
+
+    // 안내 텍스트 ex) F키를 눌러 습득하세요
+    public Text hintText;
 
     [Tooltip("이 스크립트를 '음식' 전용으로 쓰고 싶다면 Food로 고정.")]
     public ItemType requiredType = ItemType.Food;
@@ -25,6 +29,20 @@ public class PickUpItem : MonoBehaviour
         col.isTrigger = true; // 트리거 자동 세팅
     }
 
+    private void Awake()
+    {
+        // 월드의 스프라이트를 SO 아이콘으로 맞춰두면 프리팹 실수 감소
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr && item && item.icon) sr.sprite = item.icon;
+
+        // 힌트 UI는 기본적으로 꺼두기
+        if (hintUI) hintUI.SetActive(false);
+        if (hintText) hintText.gameObject.SetActive(false);
+
+        // 힌트 문구 기본 세팅 (선택)
+        if (hintText && item) hintText.text = $"F 키로 {item.itemName} 습득";
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag(playerTag)) return;
@@ -33,6 +51,13 @@ public class PickUpItem : MonoBehaviour
         inRange = playerInventory != null;
 
         if (inRange && hintUI) hintUI.SetActive(true);
+
+        // 힌트 문구 세팅
+        if (inRange)
+        {
+            if (hintText) { hintText.text = $"F 키를 눌러 {item.itemName} 습득하기"; hintText.gameObject.SetActive(true); }
+            if (hintUI) { hintUI.SetActive(true); }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -41,6 +66,7 @@ public class PickUpItem : MonoBehaviour
 
         inRange = false;
         playerInventory = null;
+        if (hintText) hintText.gameObject.SetActive(false);
         if (hintUI) hintUI.SetActive(false);
     }
 
@@ -70,6 +96,7 @@ public class PickUpItem : MonoBehaviour
         // 무게/스택 제한은 Inventory.TryAdd 안에서 처리
         if (playerInventory.TryAdd(item, quantity))
         {
+            if (hintText) hintText.gameObject.SetActive(false);
             if (hintUI) hintUI.SetActive(false);
             Destroy(gameObject); // 성공 시 씬에서 제거
         }

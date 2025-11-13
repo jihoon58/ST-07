@@ -15,7 +15,6 @@ public class InventoryUIController : MonoBehaviour
     public int rows = 7;
 
     [Header("Weight UI")]
-    public Slider weightSlider;
     public Image weightFill;   // ★ 추가: Filled Image 연결
     public Text weightText;
 
@@ -89,12 +88,6 @@ public class InventoryUIController : MonoBehaviour
         // 무게 표시
         float cur = inventory.CurrentWeight;
         float max = inventory.weightLimitKg;
-
-        if (weightSlider != null)
-        {
-            weightSlider.maxValue = max;
-            weightSlider.value = cur;
-        }
 
         // ★ 추가: 게이지 fillAmount
         if (weightFill != null)
