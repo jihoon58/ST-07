@@ -54,8 +54,8 @@ namespace ST07.Player
                 {
                     // �� ������ attackDamage ���
                     ApplyDamage(zombie.attackDamage);
-                    Debug.Log($"���� Ÿ��: {zombie.GetType().Name}, ������: {zombie.attackDamage}");
-                    Debug.Log($"�÷��̾��� ���� ü��: {currentHealth}");
+                    Debug.Log($"몬스터 타입: {zombie.GetType().Name}, 몬스터 데미지: {zombie.attackDamage}");
+                    Debug.Log($"현재 남은 체력: {currentHealth}");
                 }
             }
         }

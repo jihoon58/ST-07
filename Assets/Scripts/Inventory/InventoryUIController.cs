@@ -16,6 +16,7 @@ public class InventoryUIController : MonoBehaviour
 
     [Header("Weight UI")]
     public Slider weightSlider;
+    public Image weightFill;   // ★ 추가: Filled Image 연결
     public Text weightText;
 
     private InventorySlotUI[] slots;
@@ -95,6 +96,14 @@ public class InventoryUIController : MonoBehaviour
             weightSlider.value = cur;
         }
 
+        // ★ 추가: 게이지 fillAmount
+        if (weightFill != null)
+        {
+            float ratio = (max > 0f) ? cur / max : 0f;
+            weightFill.fillAmount = Mathf.Clamp01(ratio);
+        }
+
+        //텍스트로 Kg 수치 표시
         if (weightText != null)
         {
             weightText.text = $"{cur:0.0} / {max:0.0} kg";
