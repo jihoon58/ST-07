@@ -1,21 +1,21 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using ST07.Player; // ← 맨 위 using에 추가
+
 
 public class PlayerController_M : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
+
+    [SerializeField] private Inventory inventory;                 // 플레이어 Inventory 드래그 연결
+    [SerializeField, Range(0f, 1f)] private float fullMultiplier = 0.7f; // 꽉 찼을 때 배율
+
+    [SerializeField] private float speed;
 
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
-     
     }
 
     // Update is called once per frame
@@ -29,7 +29,15 @@ public class PlayerController_M : MonoBehaviour
         float vx = Input.GetAxisRaw("Horizontal");
         float vy = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(vx * speed, vy * speed);
+        // ★ 추가: 무게 비율 계산 → 가득(>=1)이면 0.7배
+        float mult = 1f;
+        if (inventory != null && inventory.weightLimitKg > 0f)
+        {
+            float ratio = inventory.CurrentWeight / inventory.weightLimitKg; // 0~1+
+            if (ratio >= 1f) mult = fullMultiplier;
+        }
+
+        Vector2 movement = new Vector2(vx * speed * mult, vy * speed * mult);
 
         rb.linearVelocity = movement;
     }
