@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3a7ce87871b174887598ae66601048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  fullMultiplier: 0.7
   speed: 5.7
 --- !u!114 &347207642150083533
 MonoBehaviour:
@@ -211,6 +213,9 @@ MonoBehaviour:
   currentHealth: 100
   maxFatigueSeconds: 900
   currentFatigueSeconds: 900
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4186326663973557014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +243,7 @@ GameObject:
   - component: {fileID: 3315473487834675735}
   - component: {fileID: 4162627381433088173}
   - component: {fileID: 3085713490884646609}
+  - component: {fileID: 3263295610449659465}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -375,3 +381,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b4bb0df69f06149bdd0ffd6d765389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3263295610449659465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422939818577077085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2b8a6a0aa782b44816599fd3fb333a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  followSpeed: 2
+  offset: {x: 0, y: 0, z: -10}
+  xLimit: 0
+  yLimit: 0
+  useSmoothing: 1
