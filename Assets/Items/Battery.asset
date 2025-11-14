@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: New Item
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: -3017979480325208809, guid: d245971eab265fc44a9ea7dc61c0edaa, type: 3}
   weight: 0
   maxStack: 1
   itemType: 3
