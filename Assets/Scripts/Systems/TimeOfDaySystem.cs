@@ -5,6 +5,19 @@ namespace ST07.Systems
 {
     public class TimeOfDaySystem : MonoBehaviour
     {
+        #region 싱글톤
+        public static TimeOfDaySystem instance;
+        private void Awake(){
+            if(instance == null){
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }else{
+                Destroy(gameObject);
+                return;
+            }
+        }
+        #endregion
+
         // 0-1단위가 효율적으로 보이지만 직관적으로 보기 위하여 0-24h 단위를 사용
         [Header("One Day Length (seconds)")]
         [Tooltip("하루 길이 = 900초 = 15분")]

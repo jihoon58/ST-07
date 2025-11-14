@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Zombie
+  - Scientist
+  - Researcher
+  - Bed Room
+  - Civilian
+  - DoomsDay
   layers:
   - Default
   - TransparentFX
