@@ -20,6 +20,7 @@ public class FoodResearch : MonoBehaviour
         if(FoodResearchPercent >= 100 && !endingManager.isResearchEnd){
             endingManager.ResearchEnding(); // 연구 엔딩 실행
             Destroy(gameObject); // 오브젝트 삭제
+            return;
         }
 		FoodResearchPercent += FoodResearchPerDay / TimeOfDaySystem.dayLengthSeconds * Time.deltaTime; // 진행도 증가
     }
