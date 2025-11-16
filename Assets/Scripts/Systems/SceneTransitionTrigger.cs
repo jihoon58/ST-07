@@ -27,6 +27,13 @@ public class SceneTransitionTrigger : MonoBehaviour
     [Tooltip("상호작용 가능할 때 표시할 UI 텍스트")]
     public string interactionPrompt = "E키를 눌러 이동";
     
+    [Header("Building Settings")]
+    [Tooltip("건물 타입 (home, CVS, Mart 등) - InBuilding 씬으로 이동할 때만 사용")]
+    public string buildingType = "";
+    
+    [Tooltip("건물 인덱스 - InBuilding 씬으로 이동할 때만 사용")]
+    public string buildingIndex = "";
+    
     private bool isPlayerInRange = false;
     private GameObject playerObject;
     
@@ -73,6 +80,19 @@ public class SceneTransitionTrigger : MonoBehaviour
         {
             Debug.LogError("SceneTransitionTrigger: targetSceneName이 설정되지 않았습니다!");
             return;
+        }
+        
+        // InBuilding 씬으로 이동하는 경우 건물 정보 저장
+        if (targetSceneName == "InBuilding")
+        {
+            if (!string.IsNullOrEmpty(buildingType))
+            {
+                PlayerPrefs.SetString("BuildingType", buildingType);
+            }
+            if (!string.IsNullOrEmpty(buildingIndex))
+            {
+                PlayerPrefs.SetString("BuildingIndex", buildingIndex);
+            }
         }
         
         if (useTransitionScene)
