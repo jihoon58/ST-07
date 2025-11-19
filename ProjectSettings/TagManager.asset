@@ -50,14 +50,17 @@ TagManager:
   - name: bg
     uniqueID: 1679917983
     locked: 0
+  - name: house
+    uniqueID: 3855663049
+    locked: 0
   - name: NPC
     uniqueID: 3481069339
     locked: 0
-  - name: Bullet
-    uniqueID: 3262070199
-    locked: 0
   - name: Player
     uniqueID: 2901754659
+    locked: 0
+  - name: Bullet
+    uniqueID: 3262070199
     locked: 0
   - name: Enemy
     uniqueID: 3820772447

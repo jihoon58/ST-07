@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using ST07.Data;
 using ST07.Items;
@@ -10,25 +11,18 @@ using ST07.World;
 public class BuildingDataLoader : MonoBehaviour
 {
     [Header("JSON File Settings")]
-    [Tooltip("JSON 파일 이름 (Resources 폴더 또는 persistentDataPath에 있어야 함)")]
-    public string jsonFileName = "BuildingData.json";
+    [Tooltip("JSON 파일 이름")]
+    public string jsonFileName = "GameData.json";
     
-    [Tooltip("JSON 파일이 Resources 폴더에 있는지 여부 (false면 persistentDataPath에서 로드)")]
-    public bool loadFromResources = false;
-    
-    [Header("Item Spawn Settings")]
-    [Tooltip("아이템을 배치할 부모 오브젝트 (비어있으면 씬 루트에 배치)")]
-    public Transform itemParent;
+    // [Header("Item Spawn Settings")]
+    // [Tooltip("아이템을 배치할 부모 오브젝트 (비어있으면 씬 루트에 배치)")]
+    // public Transform itemParent;
     
     [Tooltip("아이템 프리팹 (Lootable 컴포넌트가 있는 GameObject)")]
     public GameObject itemPrefab;
     
-    [Header("Debug")]
-    [Tooltip("로드된 데이터를 콘솔에 출력할지 여부")]
-    public bool debugLog = true;
-    
-    private HouseData loadedHouseData;
-    private HouseIndexData currentBuildingData;
+    private GameData.BuildingData loadedBuildingData;
+    private List<GameData.BuildingItemData> currentItemList;
     
     private void Start()
     {
@@ -42,160 +36,91 @@ public class BuildingDataLoader : MonoBehaviour
     {
         // PlayerPrefs에서 건물 정보 가져오기
         string buildingType = PlayerPrefs.GetString("BuildingType", "");
-        string buildingIndex = PlayerPrefs.GetString("BuildingIndex", "");
+        int buildingIndex = PlayerPrefs.GetInt("BuildingIndex", 0);
         
-        if (string.IsNullOrEmpty(buildingType) || string.IsNullOrEmpty(buildingIndex))
-        {
-            Debug.LogWarning("BuildingDataLoader: 건물 타입 또는 인덱스가 설정되지 않았습니다. PlayerPrefs를 확인하세요.");
-            return;
-        }
-        
-        if (debugLog)
-        {
-            Debug.Log($"BuildingDataLoader: 건물 타입={buildingType}, 인덱스={buildingIndex} 로드 시도");
-        }
+        if (string.IsNullOrEmpty(buildingType) || buildingIndex == 0) return;  
         
         // JSON 파일 로드
-        if (!LoadJsonFile())
-        {
-            Debug.LogError("BuildingDataLoader: JSON 파일 로드 실패");
-            return;
-        }
+        if (!LoadJsonFile()) return;
         
-        // 해당 건물 데이터 찾기
-        currentBuildingData = BuildingDataHelper.FindBuildingData(loadedHouseData, buildingType, buildingIndex);
+        // 해당 건물 데이터 찾기 (GameData.BuildingData의 getBuildingItemData 메서드 사용)
+        currentItemList = loadedBuildingData.getBuildingItemData(buildingType, buildingIndex);
         
-        if (currentBuildingData == null)
-        {
-            Debug.LogWarning($"BuildingDataLoader: 건물 데이터를 찾을 수 없습니다. 타입={buildingType}, 인덱스={buildingIndex}");
-            return;
-        }
-        
-        if (debugLog)
-        {
-            Debug.Log($"BuildingDataLoader: 건물 데이터 찾음. 아이템 개수={currentBuildingData.houseItem.Count}");
-        }
+        if (currentItemList == null) return;
         
         // 아이템 배치
         SpawnItems();
     }
     
-    /// <summary>
-    /// JSON 파일 로드
-    /// </summary>
     private bool LoadJsonFile()
     {
-        string jsonContent = "";
+        // persistentDataPath에서 JSON 파일 로드
+        string filePath = Path.Combine(Application.persistentDataPath, jsonFileName);
         
-        if (loadFromResources)
-        {
-            // Resources 폴더에서 로드
-            TextAsset jsonFile = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(jsonFileName));
-            if (jsonFile == null)
-            {
-                Debug.LogError($"BuildingDataLoader: Resources 폴더에서 {jsonFileName} 파일을 찾을 수 없습니다.");
-                return false;
-            }
-            jsonContent = jsonFile.text;
-        }
-        else
-        {
-            // persistentDataPath에서 로드
-            string filePath = Path.Combine(Application.persistentDataPath, jsonFileName);
-            if (!File.Exists(filePath))
-            {
-                Debug.LogError($"BuildingDataLoader: {filePath} 파일이 존재하지 않습니다.");
-                return false;
-            }
-            jsonContent = File.ReadAllText(filePath);
-        }
+        if (!File.Exists(filePath)) return false;
         
-        if (string.IsNullOrEmpty(jsonContent))
-        {
-            Debug.LogError("BuildingDataLoader: JSON 파일 내용이 비어있습니다.");
-            return false;
-        }
+        string jsonContent = File.ReadAllText(filePath);
         
-        try
-        {
-            // JSON 파싱
-            loadedHouseData = JsonUtility.FromJson<HouseData>(jsonContent);
-            if (loadedHouseData == null)
-            {
-                Debug.LogError("BuildingDataLoader: JSON 파싱 실패");
-                return false;
-            }
-            
-            if (debugLog)
-            {
-                Debug.Log("BuildingDataLoader: JSON 파일 로드 성공");
-            }
-            
-            return true;
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"BuildingDataLoader: JSON 파싱 중 오류 발생: {e.Message}");
-            return false;
-        }
+        if (string.IsNullOrEmpty(jsonContent)) return false;
+        
+        loadedBuildingData = JsonUtility.FromJson<GameData.BuildingData>(jsonContent);
+        
+        if (loadedBuildingData == null) return false;
+        
+        return true;
     }
     
     /// <summary>
     /// 아이템들을 씬에 배치
+    /// Lootable 프리팹을 Instantiate하고 Sprite와 ItemDefinition만 설정
     /// </summary>
     private void SpawnItems()
     {
-        if (currentBuildingData == null || currentBuildingData.houseItem == null)
-        {
-            return;
-        }
+        if (currentItemList == null || currentItemList.Count == 0) return;
         
-        if (itemPrefab == null)
-        {
-            Debug.LogError("BuildingDataLoader: itemPrefab이 설정되지 않았습니다!");
-            return;
-        }
+        if (itemPrefab == null) return;
         
-        foreach (var itemData in currentBuildingData.houseItem)
+        foreach (var itemData in currentItemList)
         {
-            if (string.IsNullOrEmpty(itemData.ItemName) || itemData.ItemCount <= 0)
-            {
-                continue;
-            }
+            // 유효성 검사
+            if (string.IsNullOrEmpty(itemData.itemName) || itemData.itemCount <= 0) continue;
             
             // 아이템 정의 찾기 (Resources 폴더에서)
-            ItemDefinition itemDef = FindItemDefinition(itemData.ItemName);
+            ItemDefinition itemDef = FindItemDefinition(itemData.itemName);
             if (itemDef == null)
             {
-                Debug.LogWarning($"BuildingDataLoader: 아이템 '{itemData.ItemName}'을 찾을 수 없습니다.");
                 continue;
             }
             
-            // 아이템 오브젝트 생성
-            GameObject itemObj = Instantiate(itemPrefab, itemParent);
-            itemObj.transform.position = itemData.ItemPosition;
-            itemObj.name = $"Lootable_{itemData.ItemName}_{itemData.ItemCount}";
+            // 프리팹 Instantiate
+            GameObject itemObj = Instantiate(itemPrefab, itemData.itemPosition, Quaternion.identity);
+            // itemObj.name = $"Lootable_{itemData.itemName}_{itemData.itemCount}";
             
-            // Lootable 컴포넌트 설정
+            // Sprite 설정: ItemDefinition의 icon을 SpriteRenderer에 설정
+            SpriteRenderer spriteRenderer = itemObj.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null && itemDef.icon != null)
+            {
+                spriteRenderer.sprite = itemDef.icon;
+            }
+            
+            // Lootable 컴포넌트 가져오기 또는 추가
             Lootable lootable = itemObj.GetComponent<Lootable>();
             if (lootable == null)
             {
                 lootable = itemObj.AddComponent<Lootable>();
             }
             
-            // 아이템 내용 설정
+
+            //lootable 보고 난 다음 읽기
+            //HERE
+            // ItemDefinition 설정: Lootable의 contents에 아이템 정보 설정
             lootable.contents.Clear();
             var lootEntry = new Lootable.LootEntry
             {
                 item = itemDef,
-                quantity = itemData.ItemCount
+                quantity = itemData.itemCount
             };
             lootable.contents.Add(lootEntry);
-            
-            if (debugLog)
-            {
-                Debug.Log($"BuildingDataLoader: 아이템 배치 - {itemData.ItemName} x{itemData.ItemCount} at {itemData.ItemPosition}");
-            }
         }
     }
     
@@ -216,24 +141,6 @@ public class BuildingDataLoader : MonoBehaviour
         }
         
         return null;
-    }
-    
-    /// <summary>
-    /// 수동으로 건물 데이터 다시 로드 (에디터에서 테스트용)
-    /// </summary>
-    [ContextMenu("Reload Building Data")]
-    public void ReloadBuildingData()
-    {
-        // 기존 아이템 제거
-        if (itemParent != null)
-        {
-            for (int i = itemParent.childCount - 1; i >= 0; i--)
-            {
-                DestroyImmediate(itemParent.GetChild(i).gameObject);
-            }
-        }
-        
-        LoadBuildingData();
     }
 }
 

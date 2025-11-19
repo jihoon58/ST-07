@@ -147,5 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60056fd8f773254e8005aeaf0bf222d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contents: []
+  contents:
+  - item: {fileID: 0}
+    quantity: 1
   destroyAfterLoot: 1
