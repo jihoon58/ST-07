@@ -106,6 +106,29 @@ namespace ST07.Player
 
             return false;
         }
+
+        public void RemoveItem(ItemDefinition item, int amount = 1)
+        {
+            foreach (var stack in items)
+            {
+                if (stack.item == item)
+                {
+                    stack.quantity -= amount;
+                    if (stack.quantity <= 0)
+                    {
+                        items.Remove(stack);
+                    }
+                    break;
+                }
+            }
+            OnInventoryChanged?.Invoke();
+        }
+
+        public void InvokeInventoryChanged()
+        {
+            OnInventoryChanged?.Invoke();
+        }
+
     }
 }
 

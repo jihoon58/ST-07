@@ -12,7 +12,9 @@ public class PickUpItem : MonoBehaviour
 
     [Header("Interaction")]
     public string playerTag = "Player";
-    public GameObject hintUI;          // "F: 줍기" 안내(선택)
+    //public GameObject hintUI;          // "F: 줍기" 안내(선택)
+
+    private static Text sharedHintText; // 프리팹에 자동 할당 시켜줄 변수
 
     // 안내 텍스트 ex) F키를 눌러 습득하세요
     public Text hintText;
@@ -31,16 +33,30 @@ public class PickUpItem : MonoBehaviour
 
     private void Awake()
     {
-        // 월드의 스프라이트를 SO 아이콘으로 맞춰두면 프리팹 실수 감소
+        // 스프라이트 자동 지정 (기존 코드 유지)
         var sr = GetComponent<SpriteRenderer>();
         if (sr && item && item.icon) sr.sprite = item.icon;
 
-        // 힌트 UI는 기본적으로 꺼두기
-        if (hintUI) hintUI.SetActive(false);
-        if (hintText) hintText.gameObject.SetActive(false);
+        // 1) sharedHintText가 아직 없으면 한 번만 찾기
+        if (sharedHintText == null)
+        {
+            // 인스펙터에서 넣어줬으면 그걸 사용
+            if (hintText != null)
+            {
+                sharedHintText = hintText;
+            }
+        }
 
-        // 힌트 문구 기본 세팅 (선택)
-        if (hintText && item) hintText.text = $"F 키로 {item.itemName} 습득";
+        hintText = sharedHintText;
+
+
+        // 3) 기본 상태는 꺼두기 + 기본 문구 설정
+        if (hintText)
+        {
+            hintText.gameObject.SetActive(false);
+            if (item)
+                hintText.text = $"F 키로 {item.itemName} 습득";
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -50,13 +66,13 @@ public class PickUpItem : MonoBehaviour
         playerInventory = other.GetComponent<Inventory>() ?? other.GetComponentInParent<Inventory>();
         inRange = playerInventory != null;
 
-        if (inRange && hintUI) hintUI.SetActive(true);
+        //if (inRange && hintUI) hintUI.SetActive(true);
 
         // 힌트 문구 세팅
         if (inRange)
         {
             if (hintText) { hintText.text = $"F 키를 눌러 {item.itemName} 습득하기"; hintText.gameObject.SetActive(true); }
-            if (hintUI) { hintUI.SetActive(true); }
+            //if (hintUI) { hintUI.SetActive(true); }
         }
     }
 
@@ -67,7 +83,7 @@ public class PickUpItem : MonoBehaviour
         inRange = false;
         playerInventory = null;
         if (hintText) hintText.gameObject.SetActive(false);
-        if (hintUI) hintUI.SetActive(false);
+        //if (hintUI) hintUI.SetActive(false);
     }
 
     private void Update()
@@ -97,7 +113,7 @@ public class PickUpItem : MonoBehaviour
         if (playerInventory.TryAdd(item, quantity))
         {
             if (hintText) hintText.gameObject.SetActive(false);
-            if (hintUI) hintUI.SetActive(false);
+            //if (hintUI) hintUI.SetActive(false);
             Destroy(gameObject); // 성공 시 씬에서 제거
         }
         else

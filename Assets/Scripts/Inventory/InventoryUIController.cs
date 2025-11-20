@@ -1,31 +1,33 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
-using ST07.Player; // Inventory, ItemStack ¾µ·Á°í
+using ST07.Player; // Inventory, ItemStack ì“¸ë ¤ê³ 
 
 public class InventoryUIController : MonoBehaviour
 {
     [Header("Refs")]
-    public Inventory inventory;        // ÇÃ·¹ÀÌ¾î Inventory
+    public Inventory inventory;        // í”Œë ˆì´ì–´ Inventory
     public GameObject inventoryPanel;  // Panel_Inventory
-    public Transform slotsParent;      // GridParent (GridLayoutGroup ´Ş¸° ¾Ö)
-    public GameObject slotPrefab;      // Slot ÇÁ¸®ÆÕ
+    public Transform slotsParent;      // GridParent (GridLayoutGroup ë‹¬ë¦° ì• )
+    public GameObject slotPrefab;      // Slot í”„ë¦¬íŒ¹
+
+    public Transform player;   // âœ… ì¸ìŠ¤í™í„°ì—ì„œ Player ë“œë˜ê·¸í•´ì„œ ë„£ê¸°
 
     [Header("Grid Size")]
     public int columns = 7;
     public int rows = 7;
 
     [Header("Weight UI")]
-    public Image weightFill;   // ¡Ú Ãß°¡: Filled Image ¿¬°á
+    public Image weightFill;   // â˜… ì¶”ê°€: Filled Image ì—°ê²°
     public Text weightText;
 
     private InventorySlotUI[] slots;
 
     private void Awake()
     {
-        // 7x7 ½½·Ô ÀÚµ¿ »ı¼º
+        // 7x7 ìŠ¬ë¡¯ ìë™ ìƒì„±
         CreateSlots();
 
-        // ½ÃÀÛÇÒ ¶§ ÆĞ³Î ²¨µÎ±â
+        // ì‹œì‘í•  ë•Œ íŒ¨ë„ êº¼ë‘ê¸°
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
     }
@@ -52,7 +54,7 @@ public class InventoryUIController : MonoBehaviour
             inventoryPanel.SetActive(show);
 
             if (show)
-                RefreshUI();   // ¿­¸± ¶§ ÇÑ ¹ø °»½Å
+                RefreshUI();   // ì—´ë¦´ ë•Œ í•œ ë²ˆ ê°±ì‹ 
         }
     }
 
@@ -61,12 +63,22 @@ public class InventoryUIController : MonoBehaviour
         int total = columns * rows;
         slots = new InventorySlotUI[total];
 
+        // í”Œë ˆì´ì–´ Transform ì°¾ê¸° (Player íƒœê·¸ ì‚¬ìš©)
+        Transform playerTransform = null;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            playerTransform = playerObj.transform;
+
         for (int i = 0; i < total; i++)
         {
             GameObject slotObj = Instantiate(slotPrefab, slotsParent);
             InventorySlotUI ui = slotObj.GetComponent<InventorySlotUI>();
+
+            // ì¸ë²¤í† ë¦¬ & í”Œë ˆì´ì–´ ë„˜ê²¨ì¤Œ
+            ui.Initialize(inventory, playerTransform);
+
             slots[i] = ui;
-            ui.Clear(); // ½ÃÀÛÀº ºóÄ­
+            ui.Clear(); // ì‹œì‘ì€ ë¹ˆì¹¸
         }
     }
 
@@ -76,7 +88,7 @@ public class InventoryUIController : MonoBehaviour
 
         var list = inventory.items;
 
-        // ÀÎº¥Åä¸® ³»¿ë ¡æ ½½·Ô¿¡ Ã¤¿ì±â
+        // ì¸ë²¤í† ë¦¬ ë‚´ìš© â†’ ìŠ¬ë¡¯ì— ì±„ìš°ê¸°
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < list.Count)
@@ -85,18 +97,18 @@ public class InventoryUIController : MonoBehaviour
                 slots[i].Clear();
         }
 
-        // ¹«°Ô Ç¥½Ã
+        // ë¬´ê²Œ í‘œì‹œ
         float cur = inventory.CurrentWeight;
         float max = inventory.weightLimitKg;
 
-        // ¡Ú Ãß°¡: °ÔÀÌÁö fillAmount
+        // â˜… ì¶”ê°€: ê²Œì´ì§€ fillAmount
         if (weightFill != null)
         {
             float ratio = (max > 0f) ? cur / max : 0f;
             weightFill.fillAmount = Mathf.Clamp01(ratio);
         }
 
-        //ÅØ½ºÆ®·Î Kg ¼öÄ¡ Ç¥½Ã
+        //í…ìŠ¤íŠ¸ë¡œ Kg ìˆ˜ì¹˜ í‘œì‹œ
         if (weightText != null)
         {
             weightText.text = $"{cur:0.0} / {max:0.0} kg";
