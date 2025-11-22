@@ -24,6 +24,8 @@ namespace ST07.Items
         [Tooltip("최대 스택 크기 (1 = 스택 불가)")]
         [Min(1)]
         public int maxStack = 1;
+
+        public GameObject worldPrefab;
     }
 }
 

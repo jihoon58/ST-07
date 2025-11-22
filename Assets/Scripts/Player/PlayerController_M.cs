@@ -7,7 +7,7 @@ public class PlayerController_M : MonoBehaviour
 {
 
     [SerializeField] private Inventory inventory;                 // 플레이어 Inventory 드래그 연결
-    [SerializeField, Range(0f, 1f)] private float fullMultiplier = 0.7f; // 꽉 찼을 때 배율
+    [SerializeField, Range(0f, 1f)] private float fullMultiplier; // 꽉 찼을 때 배율
 
     [SerializeField] private float speed;
 
@@ -22,6 +22,7 @@ public class PlayerController_M : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
+        
     }
 
     public void Movement()
@@ -29,7 +30,16 @@ public class PlayerController_M : MonoBehaviour
         float vx = Input.GetAxisRaw("Horizontal");
         float vy = Input.GetAxisRaw("Vertical");
 
-        // ★ 추가: 무게 비율 계산 → 가득(>=1)이면 0.7배
+        //입력백터
+        Vector2 input = new Vector2(vx, vy);
+
+        //대각선 속도 보정
+        if (input.sqrMagnitude > 1f)
+        {
+            input = input.normalized;
+        }
+
+        // 무게 비율 계산
         float mult = 1f;
         if (inventory != null && inventory.weightLimitKg > 0f)
         {
@@ -37,7 +47,9 @@ public class PlayerController_M : MonoBehaviour
             if (ratio >= 1f) mult = fullMultiplier;
         }
 
-        Vector2 movement = new Vector2(vx * speed * mult, vy * speed * mult);
+        Vector2 movement = input * speed * mult;
+       
+
 
         rb.linearVelocity = movement;
     }
