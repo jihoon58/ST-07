@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieSpawner_Test : MonoBehaviour
+public class ZombieSpawner : MonoBehaviour
 {
     [Header("Zombie Prefabs")]
     public GameObject walkerZombiePrefab;

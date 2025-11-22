@@ -40,6 +40,11 @@ namespace ST07.Enemies
         public GameObject alertIndicatorPrefab;
         //public NightBuffs nightBuffs;
 
+        [Header("Alert Settings")]
+        public float alertDuration = 0.8f;   // 아이콘이 떠 있는 시간(초)
+        private bool hasSpottedPlayer = false;
+        private float alertOffTime = -1f;
+
         [Header("Idle Sway (생동감 옵션)")]
         public float idleRadius = 0.6f;
         public float idleMoveSpeed = 1.2f;
@@ -87,6 +92,7 @@ namespace ST07.Enemies
         void FixedUpdate()
         {
             UpdateState();
+            UpdateAlertIcon();
             ActByState();
         }
 
@@ -96,6 +102,10 @@ namespace ST07.Enemies
             if (!canSee)
             {
                 state = State.Idle;
+
+                //어그로 끊겼으니 다음에 다시 봤을 때 또 뜨도록 초기화
+                hasSpottedPlayer = false;
+                alertOffTime = -1f;
                 SetAlert(false);
                 return;
             }
@@ -103,7 +113,37 @@ namespace ST07.Enemies
             float dist = Vector2.Distance(transform.position, target.position);
             state = (dist <= attackRange) ? State.Attack : State.Chase;
             SetAlert(true);
+
+            // 이번 발견 세션에서 처음 본 순간
+            if (!hasSpottedPlayer)
+            {
+                hasSpottedPlayer = true;
+
+                if (alertInstance != null)
+                {
+                    SetAlert(true);                            // 아이콘 켜기
+                    alertOffTime = Time.time + alertDuration;  // xxx초 후 자동 off
+                }
+            }
         }
+
+        //좀비 경고 아이콘 활성화
+        void UpdateAlertIcon()
+        {
+            if (alertInstance == null) return;
+
+            if (alertInstance.activeSelf && alertOffTime > 0f && Time.time >= alertOffTime)
+            {
+                SetAlert(false);
+            }
+        }
+
+        void SetAlert(bool on)
+        {
+            if (alertInstance != null) alertInstance.SetActive(on);
+        }
+
+        //코드가 ㅈㄴ 더러움 좀 고쳐야할듯
 
         void ActByState()
         {
@@ -216,15 +256,10 @@ namespace ST07.Enemies
             if (target != null)
             {
                 state = State.Chase;
-                SetAlert(true);
+                //SetAlert(true);
             }
         }
 
         void Die() => Destroy(gameObject);
-
-        void SetAlert(bool on)
-        {
-            if (alertInstance != null) alertInstance.SetActive(on);
-        }
     }
 }
