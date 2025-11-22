@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5681374346580629503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6137759783800274703}
+  m_Layer: 0
+  m_Name: HeadIconTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6137759783800274703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681374346580629503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6804518513844915579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9191431341760961387
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +63,8 @@ Transform:
   m_LocalPosition: {x: 4.97, y: 1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6137759783800274703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6808993588486154672
@@ -77,7 +109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -474194849
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 8331439340957231449, guid: 1b15022135bab404d8cf3b74ac018227, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,6 +202,9 @@ MonoBehaviour:
   attackRange: 0.8
   attackDamage: 10
   attackCooldown: 1.2
+  healthMultiplier: 1.5
+  attackMultiplier: 2
+  speedMultiplier: 1.2
   maxHealth: 50
   currentHealth: 0
   viewDistance: 8
@@ -180,9 +215,9 @@ MonoBehaviour:
   useFOV: 0
   closeProximityDistance: 1.6
   target: {fileID: 0}
-  headForAlertIcon: {fileID: 0}
-  alertIndicatorPrefab: {fileID: 0}
-  nightBuffs: {fileID: 0}
+  headForAlertIcon: {fileID: 6137759783800274703}
+  alertIndicatorPrefab: {fileID: 3562246482745101329, guid: eaa2167d6c71121489caf94fb6e30231, type: 3}
+  alertDuration: 0.8
   idleRadius: 0.6
   idleMoveSpeed: 1.2
   idleSwaySpeed: 0.6
