@@ -3,6 +3,7 @@ using static UnityEngine.GraphicsBuffer;
 using ST07.Player; // ← 맨 위 using에 추가
 
 
+
 public class PlayerController_M : MonoBehaviour
 {
 
@@ -53,4 +54,6 @@ public class PlayerController_M : MonoBehaviour
 
         rb.linearVelocity = movement;
     }
+
+    
 }

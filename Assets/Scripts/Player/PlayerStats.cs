@@ -1,6 +1,7 @@
 using ST07.Enemies;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace ST07.Player
 {
@@ -19,11 +20,19 @@ namespace ST07.Player
         [Header("Events")]
         public UnityEvent onDead;
 
+        public Image healthFillImage;
+
         public void ApplyDamage(float amount)
         {
             if (amount <= 0f || IsDead) return;
+
             currentHealth = Mathf.Max(0f, currentHealth - amount);
-            if(IsDead){
+
+            // 체력바 갱신 (맞은 데미지 비율만큼 줄어듦)
+            UpdateHealthUI();
+
+            if (IsDead)
+            {
                 onDead?.Invoke();
             }
         }
@@ -31,6 +40,7 @@ namespace ST07.Player
         public void HealthFull()
         {
             currentHealth = maxHealth;
+            UpdateHealthUI();
         }
 
         public void FatigueFull()
@@ -58,6 +68,15 @@ namespace ST07.Player
                     Debug.Log($"현재 남은 체력: {currentHealth}");
                 }
             }
+        }
+
+        private void UpdateHealthUI()
+        {
+            if (healthFillImage == null) return;
+
+            float ratio = (maxHealth > 0f) ? currentHealth / maxHealth : 0f;
+            ratio = Mathf.Clamp01(ratio);
+            healthFillImage.fillAmount = ratio;
         }
     }
 }
