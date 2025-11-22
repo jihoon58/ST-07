@@ -51,11 +51,8 @@ public class EntrySceneManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #else
-        Application.Quit();
-        #endif
+        // 종료 처리 (추후 구현)
+        Debug.Log("게임 종료");
     }
 }
 

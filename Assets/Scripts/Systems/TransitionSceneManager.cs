@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,35 +6,33 @@ using UnityEngine.UI;
 
 public class TransitionSceneManager : MonoBehaviour
 {
-   const string nextSceneNameKey = "NextKey";
    public Image progressImage;
+   public Text progressText;
+   private float delay = 0.5f;
    
    // Start is called the first frame update
    void Start()
    {
-      LoadNextScene();
-   }
-   
-   void LoadNextScene()
-   {
-      StartCoroutine(LoadScene());      
+      StartCoroutine(LoadScene());
    }
    
    IEnumerator LoadScene()
-   {
-      yield return new WaitForSeconds(1.0f);
-      
-      if(PlayerPrefs.HasKey(nextSceneNameKey) == false)
-      {
-         Debug.LogError("NextSceneNameKey does not exist.");
-      }
-      
-      string nextSceneName = PlayerPrefs.GetString(nextSceneNameKey);
+   {  
+      string nextSceneName = PlayerPrefs.GetString("NextKey");
       AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
-      
+      asyncOperation.allowSceneActivation = false;
+
+      float progress = 0f;
+
       while (!asyncOperation.isDone)
       {
-         progressImage.fillAmount = asyncOperation.progress / 0.9f;
+         progress = Mathf.Lerp(progress, asyncOperation.progress, 0.95f);
+         progressImage.fillAmount = progress;
+         progressText.text = $"{Mathf.RoundToInt(progress * 100f)}%";
+         if(asyncOperation.progress >= 0.9f){
+            yield return new WaitForSeconds(delay);
+            asyncOperation.allowSceneActivation = true;
+         }
          yield return null;
       }   
    }  

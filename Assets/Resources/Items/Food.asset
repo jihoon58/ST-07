@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: Food
+  m_Name: food
   m_EditorClassIdentifier: 
-  itemName: Food
+  itemName: food
   description: 
   icon: {fileID: 0}
   weight: 0

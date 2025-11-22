@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: Battery
+  m_Name: battery
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: battery
   description: 
   icon: {fileID: -3017979480325208809, guid: d245971eab265fc44a9ea7dc61c0edaa, type: 3}
   weight: 0
