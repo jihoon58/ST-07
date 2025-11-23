@@ -1,8 +1,9 @@
-using System;
 using ST07.Items;
+using ST07.Player;
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections.Generic;
 namespace ST07.Items
 {
     public enum ItemType
@@ -31,10 +32,40 @@ namespace ST07.Items
         [Header("Resource Type")]
         public ItemType itemType;
 
-        public void Start()
+        [Header("Food Options")]
+        [Tooltip("itemType 이 Food일 때 회복할 체력량")]
+        public float healAmount = 25f;
+
+
+        // ScriptableObject 에서는 Start 대신 OnEnable 이 더 안전함
+        private void OnEnable()
         {
-            maxStack = 99;
+            // 인스팩터 창에서 설정 안 해 둔 애들만 기본값 99로
+            if (maxStack <= 0)
+                maxStack = 99;
         }
+
+        
+
+
+        public void ApplyEffect(PlayerStats player)
+        {
+            if (player == null) return;
+
+            switch (itemType)
+            {
+                case ItemType.Food:
+                    // Food 타입이면 체력 회복
+                    player.Heal(healAmount);
+                    break;
+
+                    // 나중에 다른 타입들도 여기서 처리 가능
+                    // case ItemType.Water:
+                    //     player.Drink(thirstRecover);
+                    //     break;
+            }
+        }
+
         // public string GetDescription()
         // {
         //     switch (itemType)

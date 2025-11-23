@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: apple
+  m_Name: Apple
   m_EditorClassIdentifier: 
-  itemName: apple
+  itemName: "\uC0AC\uACFC"
   description: 
   icon: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
   weight: 25
   maxStack: 1
   worldPrefab: {fileID: 1944197984466492582, guid: 384e6d733eace9a48bbdc4d2eef7a70d, type: 3}
   itemType: 0
+  healAmount: 25
