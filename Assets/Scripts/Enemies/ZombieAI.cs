@@ -237,7 +237,7 @@ namespace ST07.Enemies
             var stats = target ? target.GetComponent<ST07.Player.PlayerStats>() : null;
             if (stats != null)
             {
-                stats.ApplyDamage(GetEffectiveDamage());
+                stats.TakeDamage(GetEffectiveDamage());
                 OnAttackSuccess();
             }
         }

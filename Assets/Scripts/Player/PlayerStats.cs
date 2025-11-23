@@ -22,7 +22,15 @@ namespace ST07.Player
 
         public Image healthFillImage;
 
-        public void ApplyDamage(float amount)
+        public void Heal(float amount)
+        {
+            if (amount <= 0f || IsDead) return;
+
+            currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+            UpdateHealthUI();   // fillAmount 갱신용 함수
+        }
+
+        public void TakeDamage(float amount)
         {
             if (amount <= 0f || IsDead) return;
 
@@ -63,7 +71,7 @@ namespace ST07.Player
                 if (zombie != null)
                 {
                     // �� ������ attackDamage ���
-                    ApplyDamage(zombie.attackDamage);
+                    TakeDamage(zombie.attackDamage);
                     Debug.Log($"몬스터 타입: {zombie.GetType().Name}, 몬스터 데미지: {zombie.attackDamage}");
                     Debug.Log($"현재 남은 체력: {currentHealth}");
                 }
