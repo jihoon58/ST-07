@@ -26,7 +26,7 @@ public class TransitionSceneManager : MonoBehaviour
 
       while (!asyncOperation.isDone)
       {
-         progress = Mathf.Lerp(progress, asyncOperation.progress, 0.95f);
+         progress = Mathf.Lerp(progress, asyncOperation.progress /0.9f, 0.95f);
          progressImage.fillAmount = progress;
          progressText.text = $"{Mathf.RoundToInt(progress * 100f)}%";
          if(asyncOperation.progress >= 0.9f){
