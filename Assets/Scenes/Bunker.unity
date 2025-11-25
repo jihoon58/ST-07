@@ -180,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: 1679917983
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2241558035354717975, guid: 29d85f7cbbfbce840835fa493ff93b43, type: 3}
+  m_Sprite: {fileID: -292240656216826580, guid: 665cd29ea02f0334eac04e89621b4fcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -201,7 +201,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.82, y: 0.82, z: 0.82}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813897957
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe025e83f69d0b54f8a4fe3c7c128fd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -596,7 +596,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813897957
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 3191487229801253599, guid: b87612457146ab74c9dec2ff68012fee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 772008880}
   - component: {fileID: 772008882}
   - component: {fileID: 772008884}
+  - component: {fileID: 772008885}
   m_Layer: 0
   m_Name: Researcher
   m_TagString: Researcher
@@ -721,14 +722,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813897957
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5362735838549604449, guid: dca97cc712edf0547869591fbda78d5d, type: 3}
+  m_Sprite: {fileID: 4322045004160624414, guid: 7e49863c66877b241a58ae9bcd0904a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.35, y: 1.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -743,9 +744,9 @@ Transform:
   m_GameObject: {fileID: 772008879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9, y: 1.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 5.42, y: 2.08, z: 0}
+  m_LocalScale: {x: 1.24, y: 1.24, z: 1.24}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -800,6 +801,28 @@ MonoBehaviour:
   FoodResearchPercent: 0
   FoodResearchPerDay: 8
   endingManager: {fileID: 0}
+--- !u!95 &772008885
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772008879}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 827e03143f89ac244bebc0af030b11d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &860377538
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +968,8 @@ MonoBehaviour:
   requiresInteraction: 1
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
+  buildingType: 
+  buildingIndex: 
 --- !u!61 &973226020
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1221,7 +1246,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813897957
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -6815232998576308685, guid: 2f0f74fc0ad655c4bbed84a98d228cb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1439,12 +1464,24 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.8705
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.2407
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1478,6 +1515,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387319181464859853, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4780720426310373332, guid: b8557059932a4484490379445130645d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1647,7 +1692,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813897957
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -983950268115033839, guid: 613c3b78211e2b34ca1f5fa42acc5b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
