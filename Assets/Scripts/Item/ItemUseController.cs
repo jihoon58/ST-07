@@ -39,16 +39,16 @@ namespace ST07.Player
                     // 1) 인벤토리에서 1개 제거 시도
                     bool removed = inventory.TryRemove(resource, 1);
 
-                    if (removed)
-                    {
-                        // 2) 제거 성공했으면 효과 적용 (체력 회복)
-                        resource.ApplyEffect(playerStats);
-                        Debug.Log("Food 사용! 체력 회복됨.");
-                    }
-                    else
-                    {
-                        Debug.Log("Food 제거 실패…(인벤토리 상태 확인 필요)");
-                    }
+                    //if (removed)
+                    //{
+                    //    // 2) 제거 성공했으면 효과 적용 (체력 회복)      이 부분 지우기 일단
+                    //    resource.ApplyEffect(playerStats);
+                    //    Debug.Log("Food 사용! 체력 회복됨.");
+                    //}
+                    //else
+                    //{
+                    //    Debug.Log("Food 제거 실패…(인벤토리 상태 확인 필요)");
+                    //}
 
                     // 첫 번째 Food만 사용하고 함수 종료
                     return;

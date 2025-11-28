@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: battery
+  m_Name: Battery
   m_EditorClassIdentifier: 
-  itemName: battery
+  itemName: "\uBC30\uD130\uB9AC"
   description: 
-  icon: {fileID: -3017979480325208809, guid: d245971eab265fc44a9ea7dc61c0edaa, type: 3}
-  weight: 0
+  icon: {fileID: -3017979480325208809, guid: 8fec65292de2d544cbd269cd8b3c5a7f, type: 3}
+  weight: 5
   maxStack: 1
+  worldPrefab: {fileID: 1693717593900380771, guid: 4763fdd0e50375d40a5a9759cf885710, type: 3}
   itemType: 3
+  healAmount: 25

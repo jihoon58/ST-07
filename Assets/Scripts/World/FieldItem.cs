@@ -32,10 +32,13 @@ namespace ST07.World{
             // }
         }
         private void Update(){
-            if(Input.GetKeyDown(KeyCode.F)){
-                if(Inventory.CanAdd(itemDefinition, quantity)){
-                onItemPickup?.Invoke();
-                
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (inventory.CanAdd(itemDefinition, quantity))       // -> 아 부분 에러 CanAdd, TryAdd 둘 중 하나 삭제? 어떻게 하라는건지 정확히 몰라서 일단 보류 좀
+                {
+                    onItemPickup?.Invoke();
+
+                }
             }
         }
         private void OnTriggerEnter2D(Collider2D other){
