@@ -1,0 +1,133 @@
+{
+  "typeList": [
+    {
+      "type": "home",
+      "indexList": [
+        {
+          "index": 1,
+          "itemList": [
+            {
+              "itemName": "Medkit",
+              "itemCount": 2,
+              "itemPos": {
+                "x": 1.5,
+                "y": 2.3
+              }
+            },
+            {
+              "itemName": "Ammo",
+              "itemCount": 10,
+              "itemPos": {
+                "x": 3.0,
+                "y": 1.8
+              }
+            },
+            {
+              "itemName": "Food",
+              "itemCount": 5,
+              "itemPos": {
+                "x": 0.5,
+                "y": 0.5
+              }
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "itemList": [
+            {
+              "itemName": "Water",
+              "itemCount": 3,
+              "itemPos": {
+                "x": 2.5,
+                "y": 2.5
+              }
+            },
+            {
+              "itemName": "Bandage",
+              "itemCount": 4,
+              "itemPos": {
+                "x": 1.0,
+                "y": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "CVS",
+      "indexList": [
+        {
+          "index": 1,
+          "itemList": [
+            {
+              "itemName": "Energy Drink",
+              "itemCount": 2,
+              "itemPos": {
+                "x": 4.0,
+                "y": 3.0
+              }
+            },
+            {
+              "itemName": "Snack",
+              "itemCount": 6,
+              "itemPos": {
+                "x": 3.5,
+                "y": 2.5
+              }
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "itemList": [
+            {
+              "itemName": "First Aid Kit",
+              "itemCount": 1,
+              "itemPos": {
+                "x": 5.0,
+                "y": 4.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "mart",
+      "indexList": [
+        {
+          "index": 1,
+          "itemList": [
+            {
+              "itemName": "Canned Food",
+              "itemCount": 8,
+              "itemPos": {
+                "x": 6.0,
+                "y": 1.0
+              }
+            },
+            {
+              "itemName": "Battery",
+              "itemCount": 4,
+              "itemPos": {
+                "x": 7.0,
+                "y": 2.0
+              }
+            },
+            {
+              "itemName": "Flashlight",
+              "itemCount": 1,
+              "itemPos": {
+                "x": 5.5,
+                "y": 1.5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

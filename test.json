@@ -1,0 +1,115 @@
+{
+    "Stat" : {
+        "health" : 100
+    },
+    "Inventory" : [
+        {
+            "name" : "name",
+            "count" : 100
+        },
+        {
+            "name" : "name",
+            "count" : 100
+        }
+    ],
+    "Research" : 23.5,
+    "BuildingData" : {
+        "home" : [
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            },
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            }
+        ],
+        "CVS" : [
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            },
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            }
+        ],
+        "mart" : [
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            },
+            {
+                "buildingIndex" : 1,
+                "buildingItem" : [
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    },
+                    {
+                        "Item Name" : "name",
+                        "Item count" : 5,
+                        "Item position" : { "x": 1.0, "y": 2.0 }
+                    }
+                ]
+            }
+        ]
+    }
+    
+}

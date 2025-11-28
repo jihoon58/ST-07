@@ -32,10 +32,6 @@ namespace ST07.Items
         [Header("Resource Type")]
         public ItemType itemType;
 
-        [Header("Food Options")]
-        [Tooltip("itemType 이 Food일 때 회복할 체력량")]
-        public float healAmount = 25f;
-
 
         // ScriptableObject 에서는 Start 대신 OnEnable 이 더 안전함
         private void OnEnable()
@@ -48,23 +44,23 @@ namespace ST07.Items
         
 
 
-        public void ApplyEffect(PlayerStats player)
-        {
-            if (player == null) return;
+        // public void ApplyEffect(PlayerStats player)
+        // {
+        //     if (player == null) return;
 
-            switch (itemType)
-            {
-                case ItemType.Food:
-                    // Food 타입이면 체력 회복
-                    player.Heal(healAmount);
-                    break;
+        //     switch (itemType)
+        //     {
+        //         case ItemType.Food:
+        //             // Food 타입이면 체력 회복
+        //             player.Heal(healAmount);
+        //             break;
 
-                    // 나중에 다른 타입들도 여기서 처리 가능
-                    // case ItemType.Water:
-                    //     player.Drink(thirstRecover);
-                    //     break;
-            }
-        }
+        //             // 나중에 다른 타입들도 여기서 처리 가능
+        //             // case ItemType.Water:
+        //             //     player.Drink(thirstRecover);
+        //             //     break;
+        //     }
+        // }
 
         // public string GetDescription()
         // {
