@@ -22,11 +22,12 @@ public class TransitionSceneManager : MonoBehaviour
       AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextSceneName);
       asyncOperation.allowSceneActivation = false;
 
-      float progress = 0f;
+      float progress;
 
       while (!asyncOperation.isDone)
       {
-         progress = Mathf.Lerp(progress, asyncOperation.progress /0.9f, 0.95f);
+         progress  = asyncOperation.progress /0.9f;
+         // progress = Mathf.Lerp(progress, asyncOperation.progress /0.9f, 0.95f);
          progressImage.fillAmount = progress;
          progressText.text = $"{Mathf.RoundToInt(progress * 100f)}%";
          if(asyncOperation.progress >= 0.9f){
