@@ -798,9 +798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e411627310d9604aa536f488e38c9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodResearchPercent: 0
-  FoodResearchPerDay: 8
-  endingManager: {fileID: 0}
 --- !u!95 &772008885
 Animator:
   serializedVersion: 7
@@ -1448,9 +1445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5661df971fe54c4c8fa357eaec9a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoInitialize: 1
-  playerSpawnPoint: {fileID: 932223207}
-  warnOnlyIfPlayerNotFound: 1
 --- !u!1001 &1617220248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1465,15 +1459,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.1
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.1
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.1
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1523,6 +1517,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4780720426310373332, guid: b8557059932a4484490379445130645d, type: 3}
+    - target: {fileID: 4423859814897343950, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423859814897343950, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.79
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

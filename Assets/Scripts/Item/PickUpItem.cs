@@ -19,9 +19,6 @@ public class PickUpItem : MonoBehaviour
     // 안내 텍스트 ex) F키를 눌러 습득하세요
     public Text hintText;
 
-    [Tooltip("이 스크립트를 '음식' 전용으로 쓰고 싶다면 Food로 고정.")]
-    public ItemType requiredType = ItemType.Food;
-
     private Inventory playerInventory;
     private bool inRange;
 
@@ -99,13 +96,6 @@ public class PickUpItem : MonoBehaviour
         if (item == null)
         {
             Debug.LogWarning("PickupResourceItem2D: item이 비어 있습니다.");
-            return;
-        }
-
-        // 이 스크립트를 '음식' 전용으로 쓰고 싶다면 타입 체크
-        if (item.itemType != requiredType)
-        {
-            Debug.LogWarning($"타입 불일치: 필요한 타입 {requiredType}, 실제 {item.itemType}");
             return;
         }
 

@@ -234,6 +234,8 @@ namespace ST07.Enemies
             if (Time.time - lastAttackTime < attackCooldown) return;
             lastAttackTime = Time.time;
 
+            
+
             var stats = target ? target.GetComponent<ST07.Player.PlayerStats>() : null;
             if (stats != null)
             {

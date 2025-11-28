@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: "\uBB3C"
   description: 
-  icon: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
-  weight: 0
+  icon: {fileID: 6049605792901559095, guid: f8c3c1705ac1e274a8d834e918f0f748, type: 3}
+  weight: 1
   maxStack: 1
+  worldPrefab: {fileID: 4537177872454976852, guid: 9883e082460ad4641b27b5f3ec44865e, type: 3}
   itemType: 2
+  healAmount: 25
