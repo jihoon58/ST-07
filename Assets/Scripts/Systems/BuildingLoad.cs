@@ -19,11 +19,13 @@ namespace ST07.Systems{
 
         private Building.BuildingData data;
         private List<Building.Item> itemList;
-        private List<FieldItem> fieldItems;
-
+        private List<FieldItem> fieldItemList;
+        public GameObject bg;
         private void Start()
         {
+            fieldItemList = new List<FieldItem>();
             LoadJsonFile();
+            loadBG();
             SpawnItems();
         }
 
@@ -54,11 +56,25 @@ namespace ST07.Systems{
             }
             itemList = data.getItemList(type, index);
             foreach (var item in itemList) {
-                fieldItems.Add(Instantiate(itemPrefab, item.itemPos, Quaternion.identity).GetComponent<FieldItem>());
-                fieldItems[fieldItems.Count - 1].itemName = item.itemName;
-                fieldItems[fieldItems.Count - 1].quantity = item.itemCount;
-                fieldItems[fieldItems.Count - 1].setItemDefinition();
+                fieldItemList.Add(Instantiate(itemPrefab, new Vector3(item.itemPos.x, item.itemPos.y, 0), Quaternion.identity).GetComponent<FieldItem>());
+                fieldItemList[fieldItemList.Count - 1].set(item.itemName, item.itemCount);
             }
         }
+    
+        private void loadBG(){
+            string type = PlayerPrefs.GetString("BuildingType", "");
+            switch (type) {
+                case "home":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").homeBg;
+                    break;
+                case "CVS":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").CVSBg;
+                    break;
+                case "mart":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").martBg;
+                    break;
+            }
+        }
+    
     }
 }

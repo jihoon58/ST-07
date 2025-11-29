@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
   m_Name: Fuel
   m_EditorClassIdentifier: 
-  itemName: "\uC5F0\uB8CC"
+  itemName: Fuel
   description: 
   icon: {fileID: 5979628931232385003, guid: dd2a3c8bc711b2145b767da2f3c634b4, type: 3}
-  weight: 7
+  weight: 0
   maxStack: 1
-  worldPrefab: {fileID: 2913646344413540453, guid: 18f11675638c80341b31b83dfd8ff65a, type: 3}
+  worldPrefab: {fileID: 0}
   itemType: 4
-  healAmount: 25
