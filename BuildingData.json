@@ -7,7 +7,7 @@
           "index": 1,
           "itemList": [
             {
-              "itemName": "Medkit",
+              "itemName": "fuel",
               "itemCount": 2,
               "itemPos": {
                 "x": 1.5,
@@ -15,7 +15,7 @@
               }
             },
             {
-              "itemName": "Ammo",
+              "itemName": "battery",
               "itemCount": 10,
               "itemPos": {
                 "x": 3.0,

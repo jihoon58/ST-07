@@ -37,11 +37,11 @@ namespace ST07.Data{
         {
             public List<Type> typeList;
             public List<Item> getItemList(string type, int index){
-                foreach (var typeList in typeList){
-                    if (typeList.type == type){
-                        foreach (var indexList in typeList.indexList){
-                            if (indexList.index == index){
-                                return indexList.itemList;
+                foreach (var t in typeList){
+                    if (t.type == type){
+                        foreach (var i in t.indexList){
+                            if (i.index == index){
+                                return i.itemList;
                             }
                         }
                     }
