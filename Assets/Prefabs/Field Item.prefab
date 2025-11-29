@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3978590962932367016}
   - component: {fileID: 904675030270030161}
   - component: {fileID: 1839074767775765927}
-  - component: {fileID: 1455589234093130460}
+  - component: {fileID: 5736412860443047799}
   m_Layer: 0
-  m_Name: Lootable Item
+  m_Name: Field Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 325309603
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe025e83f69d0b54f8a4fe3c7c128fd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &1455589234093130460
+--- !u!114 &5736412860443047799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,8 +144,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7154649411698955947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f60056fd8f773254e8005aeaf0bf222d, type: 3}
+  m_Script: {fileID: 11500000, guid: b5ab02f3b0c98974aad817850e546d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contents: []
-  destroyAfterLoot: 1
+  itemName: 
+  quantity: 0
+  weight: 0
+  itemDefinition: {fileID: 0}
+  inventory: {fileID: 0}
+  onItemEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemPickup:
+    m_PersistentCalls:
+      m_Calls: []

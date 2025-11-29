@@ -7,15 +7,15 @@ namespace ST07.Player
     public class ItemUseController : MonoBehaviour
     {
         [Header("Refs")]
-        public Inventory inventory;      // ÇÃ·¹ÀÌ¾î ÀÎº¥Åä¸®
-        public PlayerStats playerStats;  // ÇÃ·¹ÀÌ¾î ½ºÅÈ
+        public Inventory inventory;      // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Îºï¿½ï¿½ä¸®
+        public PlayerStats playerStats;  // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         [Header("Keys")]
         public KeyCode useFoodKey = KeyCode.Q;
 
         private void Update()
         {
-            // Q Å°¸¦ ´­·¶À» ¶§ Food ¾ÆÀÌÅÛ »ç¿ë
+            // Q Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Food ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (Input.GetKeyDown(useFoodKey))
             {
                 UseFirstFood();
@@ -24,38 +24,38 @@ namespace ST07.Player
 
         private void UseFirstFood()
         {
-            // ÇÃ·¹ÀÌ¾î°¡ Á×¾úÀ¸¸é »ç¿ë ¾È ÇÔ
+            // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
             if (playerStats == null || playerStats.IsDead) return;
             if (inventory == null) return;
 
-            // ÀÎº¥Åä¸® ¾ÈÀ» µ¹¸é¼­ Food Å¸ÀÔ Ã£±â
+            // ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ Food Å¸ï¿½ï¿½ Ã£ï¿½ï¿½
             for (int i = 0; i < inventory.items.Count; i++)
             {
                 ItemStack stack = inventory.items[i];
 
-                // ResourceItemÀÎÁö È®ÀÎ + Å¸ÀÔÀÌ Food ÀÎÁö È®ÀÎ
+                // ResourceItemï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ + Å¸ï¿½ï¿½ï¿½ï¿½ Food ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
                 if (stack.item is ResourceItem resource && resource.itemType == ItemType.Food)
                 {
-                    // 1) ÀÎº¥Åä¸®¿¡¼­ 1°³ Á¦°Å ½Ãµµ
+                    // 1) ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½
                     bool removed = inventory.TryRemove(resource, 1);
 
-                    //if (removed)
-                    //{
-                    //    // 2) Á¦°Å ¼º°øÇßÀ¸¸é È¿°ú Àû¿ë (Ã¼·Â È¸º¹)      ÀÌ ºÎºÐ Áö¿ì±â ÀÏ´Ü
-                    //    resource.ApplyEffect(playerStats);
-                    //    Debug.Log("Food »ç¿ë! Ã¼·Â È¸º¹µÊ.");
-                    //}
-                    //else
-                    //{
-                    //    Debug.Log("Food Á¦°Å ½ÇÆÐ¡¦(ÀÎº¥Åä¸® »óÅÂ È®ÀÎ ÇÊ¿ä)");
-                    //}
+                    if (removed)
+                    {
+                        // 2) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Ã¼ï¿½ï¿½ È¸ï¿½ï¿½)
+                        //resource.ApplyEffect(playerStats);
+                        Debug.Log("Food ï¿½ï¿½ï¿½! Ã¼ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½.");
+                    }
+                    else
+                    {
+                        Debug.Log("Food ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¡ï¿½(ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ê¿ï¿½)");
+                    }
 
-                    // Ã¹ ¹øÂ° Food¸¸ »ç¿ëÇÏ°í ÇÔ¼ö Á¾·á
+                    // Ã¹ ï¿½ï¿½Â° Foodï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                     return;
                 }
             }
 
-            Debug.Log("»ç¿ëÇÒ Food ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ Food ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
         }
     }
 }
