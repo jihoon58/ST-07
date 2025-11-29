@@ -12,12 +12,10 @@ public class EntrySceneManager : MonoBehaviour
     public string firstSceneName;
     
     [Header("Objects")]
-    [Tooltip("플레이어 상태 패널")]
-    public GameObject playerStatusPanel;
     public GameObject mainCanvas;
-    public GameObject inventoryPanel;
-    public GameObject hintText;
     public GameObject player;
+
+    [Header("Buttons")]
     public Button startButton;
     public Button settingsButton;
     public Button quitButton;
@@ -25,16 +23,14 @@ public class EntrySceneManager : MonoBehaviour
     /// <summary>
     /// 게임에서 필요한 설정 초기화
     /// </summary>
-    private void Awake(){
-        // 시작화면에서 불필요한 요소 비활성화
-        playerStatusPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
-        hintText.SetActive(false);
-        player.SetActive(false);
-
+    private void Start(){
         // 게임에서 가지고 다닐 요소 DontDestroyOnLoad
         DontDestroyOnLoad(mainCanvas);
         DontDestroyOnLoad(player);
+
+        // 시작화면에서 불필요한 요소 비활성화
+        mainCanvas.SetActive(false);
+        player.SetActive(false);
 
         // 게임 시작 시 로드할 첫 씬 이름 설정
         firstSceneName = "Bunker";
@@ -56,13 +52,13 @@ public class EntrySceneManager : MonoBehaviour
             return;
         }
         // 비활성화 시킨 요소 활성화
-        playerStatusPanel.SetActive(true);
-        inventoryPanel.SetActive(true);
-        hintText.SetActive(true);
+        mainCanvas.SetActive(true);
         player.SetActive(true);
 
         // 다음 씬 이름 설정
         PlayerPrefs.SetString("NextKey", firstSceneName);
+
+        // 다음 씬 로드
         SceneManager.LoadScene("Transition Scene");
     }
     
