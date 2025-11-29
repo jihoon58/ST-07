@@ -20,11 +20,12 @@ namespace ST07.Systems{
         private Building.BuildingData data;
         private List<Building.Item> itemList;
         private List<FieldItem> fieldItemList;
-
+        public GameObject bg;
         private void Start()
         {
             fieldItemList = new List<FieldItem>();
             LoadJsonFile();
+            loadBG();
             SpawnItems();
         }
 
@@ -59,5 +60,21 @@ namespace ST07.Systems{
                 fieldItemList[fieldItemList.Count - 1].set(item.itemName, item.itemCount);
             }
         }
+    
+        private void loadBG(){
+            string type = PlayerPrefs.GetString("BuildingType", "");
+            switch (type) {
+                case "home":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").homeBg;
+                    break;
+                case "CVS":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").CVSBg;
+                    break;
+                case "mart":
+                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").martBg;
+                    break;
+            }
+        }
+    
     }
 }
