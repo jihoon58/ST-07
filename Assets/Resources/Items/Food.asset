@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: food
+  m_Name: Food
   m_EditorClassIdentifier: 
-  itemName: food
+  itemName: Food
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 8984754096541894249, guid: d780724acb3b3a546a2013adaf62971d, type: 3}
   weight: 0
   maxStack: 1
+  worldPrefab: {fileID: 0}
   itemType: 0

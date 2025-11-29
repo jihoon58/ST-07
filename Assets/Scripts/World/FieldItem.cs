@@ -13,11 +13,22 @@ namespace ST07.World{
         public ItemDefinition itemDefinition;
 
         public Inventory inventory;
+        [Header("Size Settings")]
+        [Tooltip("모든 아이템이 이 크기(픽셀)로 표시됩니다")]
+        public float targetSize = 64f;
+        
         [Header("Events")]
         public UnityEvent onItemEnter;
         public UnityEvent onItemExit;
         public UnityEvent onItemPickup;
-        public void setItemDefinition(){
+
+        public void set(string itemName, int quantity){
+            this.itemName = itemName;
+            this.quantity = quantity;
+            setItemDefinition();
+            setSprite();
+        }
+        private void setItemDefinition(){
             // try{
             //     resourceItem = Resources.Load<ResourceItem>("Items/" + itemName);
             // }catch(Exception){
@@ -50,6 +61,23 @@ namespace ST07.World{
         private void OnTriggerExit2D(Collider2D other){
             if(other.gameObject.CompareTag("Player")){
                 onItemExit?.Invoke();
+            }
+        }
+    
+        private void setSprite(){
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = itemDefinition.icon;
+            
+            // 아이콘 크기를 기준으로 스케일 계산
+            if(itemDefinition.icon != null){
+                Vector2 iconSize = itemDefinition.icon.rect.size;
+                if(iconSize.x > 0 && iconSize.y > 0){
+                    float scaleX = targetSize / iconSize.x;
+                    float scaleY = targetSize / iconSize.y;
+                    // 비율을 유지하면서 더 큰 축을 기준으로 스케일 조정
+                    float uniformScale = Mathf.Min(scaleX, scaleY);
+                    transform.localScale = Vector3.one * uniformScale;
+                }
             }
         }
     }

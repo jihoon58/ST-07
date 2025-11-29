@@ -345,9 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5661df971fe54c4c8fa357eaec9a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoInitialize: 1
-  playerSpawnPoint: {fileID: 588129535}
-  warnOnlyIfPlayerNotFound: 1
 --- !u!4 &588129535
 Transform:
   m_ObjectHideFlags: 0
@@ -484,7 +481,7 @@ MonoBehaviour:
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: Mart
-  buildingIndex: 1
+  buildingIndex: 0
 --- !u!61 &694385130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -583,7 +580,7 @@ MonoBehaviour:
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: 
-  buildingIndex: 
+  buildingIndex: 0
 --- !u!61 &796995033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -849,7 +846,7 @@ MonoBehaviour:
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: 
-  buildingIndex: 
+  buildingIndex: 0
 --- !u!61 &1208884110
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -948,7 +945,7 @@ MonoBehaviour:
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: CVS
-  buildingIndex: 1
+  buildingIndex: 0
 --- !u!61 &1385442071
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -19,10 +19,11 @@ namespace ST07.Systems{
 
         private Building.BuildingData data;
         private List<Building.Item> itemList;
-        private List<FieldItem> fieldItems;
+        private List<FieldItem> fieldItemList;
 
         private void Start()
         {
+            fieldItemList = new List<FieldItem>();
             LoadJsonFile();
             SpawnItems();
         }
@@ -54,10 +55,8 @@ namespace ST07.Systems{
             }
             itemList = data.getItemList(type, index);
             foreach (var item in itemList) {
-                fieldItems.Add(Instantiate(itemPrefab, item.itemPos, Quaternion.identity).GetComponent<FieldItem>());
-                fieldItems[fieldItems.Count - 1].itemName = item.itemName;
-                fieldItems[fieldItems.Count - 1].quantity = item.itemCount;
-                fieldItems[fieldItems.Count - 1].setItemDefinition();
+                fieldItemList.Add(Instantiate(itemPrefab, new Vector3(item.itemPos.x, item.itemPos.y, 0), Quaternion.identity).GetComponent<FieldItem>());
+                fieldItemList[fieldItemList.Count - 1].set(item.itemName, item.itemCount);
             }
         }
     }

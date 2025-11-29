@@ -305,7 +305,7 @@ MonoBehaviour:
   interactionKey: 101
   interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: 
-  buildingIndex: 
+  buildingIndex: 0
 --- !u!61 &564546516
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ff4443dd2e51644b7753f45379dd6c, type: 3}
-  m_Name: ResearchData
+  m_Name: Research Data
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: Research Data
   description: 
-  icon: {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+  icon: {fileID: 0}
   weight: 0
   maxStack: 1
+  worldPrefab: {fileID: 0}
   itemType: 5
