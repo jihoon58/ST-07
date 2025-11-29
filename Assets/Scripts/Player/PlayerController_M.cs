@@ -51,17 +51,25 @@ public class PlayerController_M : MonoBehaviour
         UpdateAnimation(currentInput);
     }
 
-    public void Movement(Vector2 input)     //?? 움직이는 메서드 코드에 왜 무게 인벤토리 관련이 있지....? 고민 ㄱ
+    public void Movement(Vector2 input)
     {
-        // Weight ratio calculation
-        float mult = 1f;
-        if (inventory != null && inventory.weightLimitKg > 0f)
+        // 무게 기반 속도 감소 계산 (1kg = 1% 감소)
+        float speedMultiplier = 1f;
+        
+        if (inventory != null)
         {
-            float ratio = inventory.CurrentWeight / inventory.weightLimitKg; // 0~1+
-            if (ratio >= 1f) mult = fullMultiplier;
+            float currentWeight = inventory.CurrentWeight;
+            
+            // 1kg당 1% 속도 감소 (0.01 = 1%)
+            // 예: 3kg → 3% 감소 → 0.97 배속
+            float penalty = currentWeight * 0.01f;  // kg당 1% 감소
+            speedMultiplier = 1f - penalty;
+            
+            // 최소 속도 제한 (너무 느려지지 않도록)
+            speedMultiplier = Mathf.Max(speedMultiplier, 0.3f);  // 최소 30% 속도
         }
 
-        Vector2 movement = input * speed * mult;
+        Vector2 movement = input * speed * speedMultiplier;
 
         rb.linearVelocity = movement;
     }
