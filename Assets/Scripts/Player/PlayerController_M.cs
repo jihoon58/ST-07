@@ -12,6 +12,10 @@ public class PlayerController_M : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    
+    [Header("Idle Sprites")]
+    public Sprite idleSprite;        // player_default (아래/일반 idle)
+    public Sprite idleSpriteUp;      // player_default2 (위쪽 idle)
 
     private Vector2 lastMoveInput;
     private Vector2 currentInput; // Current frame's input
@@ -97,5 +101,6 @@ public class PlayerController_M : MonoBehaviour
                 //대각선 이동도 결국 X축을 기준으로 하기에 (0.7. 0,7) 과 같은 대각선 이동도 방향전환이 제대로 이루어짐
             }
         }
+      
     }
 }

@@ -1152,7 +1152,7 @@ Transform:
   m_GameObject: {fileID: 841842472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.24, y: 0.29, z: 0}
+  m_LocalPosition: {x: 2.68, y: 2.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1299,7 +1299,9 @@ MonoBehaviour:
   fullMultiplier: 0.3
   speed: 5.7
   animator: {fileID: 841842486}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 841842474}
+  idleSprite: {fileID: -4780720426310373332, guid: b8557059932a4484490379445130645d, type: 3}
+  idleSpriteUp: {fileID: -6714991654864536015, guid: 3060cb0409ee48743b5a39fec2dc69d1, type: 3}
 --- !u!114 &841842485
 MonoBehaviour:
   m_ObjectHideFlags: 0

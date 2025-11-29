@@ -547,6 +547,7 @@ GameObject:
   - component: {fileID: 626907021}
   - component: {fileID: 626907020}
   - component: {fileID: 626907022}
+  - component: {fileID: 626907023}
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Scientist
@@ -598,7 +599,7 @@ SpriteRenderer:
   m_SortingLayerID: -813897957
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3191487229801253599, guid: b87612457146ab74c9dec2ff68012fee, type: 3}
+  m_Sprite: {fileID: -8499506943212816717, guid: dd38861bc7f986b499c28534415ffc0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -618,8 +619,8 @@ Transform:
   m_GameObject: {fileID: 626907019}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.38, y: 1.98, z: 0}
-  m_LocalScale: {x: 0.51, y: 0.51, z: 0.51}
+  m_LocalPosition: {x: -4.56, y: 1.08, z: 0}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -658,8 +659,30 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 4.12
+  m_Offset: {x: -0.031071588, y: -0.015536359}
+  m_Radius: 1.5255096
+--- !u!95 &626907023
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626907019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc0be39615e475e499509c3f143e0462, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &772008879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,11 +1494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8705
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2407
+      value: -1.79
       objectReference: {fileID: 0}
     - target: {fileID: 2300597317396699507, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
       propertyPath: m_LocalPosition.z
