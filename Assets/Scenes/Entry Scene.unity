@@ -397,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 396159725}
   - component: {fileID: 396159724}
+  - component: {fileID: 396159726}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -440,6 +441,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &396159726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396159723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a15a879c16d9374e8db56c23af9cc7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCanvas: {fileID: 1174598917}
+  player: {fileID: 841842472}
 --- !u!1 &417528163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &841842474
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1885,7 +1900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1174598918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3001,8 +3016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSceneName: Bunker
-  mainCanvas: {fileID: 1174598917}
-  player: {fileID: 841842472}
   startButton: {fileID: 996397076}
   settingsButton: {fileID: 546392066}
   quitButton: {fileID: 1558196202}
