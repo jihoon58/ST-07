@@ -16,12 +16,23 @@ namespace ST07.Player
         [Header("Aim")]
         public Transform aimTransform; // 캐릭터가 바라볼 기준(스프라이트/무기 루트)
 
+        [Header("Animation")]
+        public Animator animator;
+        public SpriteRenderer spriteRenderer;
+
         private Rigidbody2D body;
         private Vector2 currentVelocity;
+        private Vector2 lastMoveInput;
 
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
+            
+            // Auto-find components if not assigned
+            if (animator == null)
+                animator = GetComponent<Animator>();
+            if (spriteRenderer == null)
+                spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -41,6 +52,9 @@ namespace ST07.Player
             Vector2 change = Vector2.ClampMagnitude(velocityDelta, accel * Time.fixedDeltaTime);
 
             body.linearVelocity = velocity + change;
+            
+            // Update animation parameters
+            UpdateAnimation(input);
         }
 
         private Vector2 ReadMoveInput()
@@ -83,6 +97,31 @@ namespace ST07.Player
             var cam = Camera.main;
             return cam != null ? cam.ScreenToWorldPoint(Input.mousePosition) : Vector3.zero;
 #endif
+        }
+
+        private void UpdateAnimation(Vector2 input)
+        {
+            if (animator == null)
+                return;
+
+            bool isMoving = input.sqrMagnitude > 0.0001f;
+            animator.SetBool("isMoving", isMoving);
+
+            if (isMoving)
+            {
+                lastMoveInput = input;
+
+                // Normalize input for animation parameters
+                Vector2 normalizedInput = input.normalized;
+                animator.SetFloat("directionX", normalizedInput.x);
+                animator.SetFloat("directionY", normalizedInput.y);
+
+                // Flip sprite for left/right movement
+                if (spriteRenderer != null && Mathf.Abs(normalizedInput.x) > 0.1f)
+                {
+                    spriteRenderer.flipX = normalizedInput.x < 0;
+                }
+            }
         }
     }
 }
