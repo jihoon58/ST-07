@@ -20,6 +20,10 @@ public class InventoryUIController : MonoBehaviour
     public Image weightFill;   // ★ 추가: Filled Image 연결
     public Text weightText;
 
+    // 인벤토리 열림/닫힘 이벤트
+    public event System.Action OnInventoryOpened;   // 인벤토리가 열렸을 때
+    public event System.Action OnInventoryClosed;   // 인벤토리가 닫혔을 때
+
     private InventorySlotUI[] slots;
 
     private void Awake()
@@ -54,7 +58,14 @@ public class InventoryUIController : MonoBehaviour
             inventoryPanel.SetActive(show);
 
             if (show)
+            {
                 RefreshUI();   // 열릴 때 한 번 갱신
+                OnInventoryOpened?.Invoke();  // ✅ 인벤토리 열림 이벤트 발생
+            }
+            else
+            {
+                OnInventoryClosed?.Invoke();  // ✅ 인벤토리 닫힘 이벤트 발생
+            }
         }
     }
 

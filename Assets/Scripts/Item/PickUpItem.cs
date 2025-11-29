@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class PickUpItem : MonoBehaviour
 {
     [Header("Item")]
-    public ResourceItem item;          // »ç°ú SO ÇÒ´ç (ItemType = Food)
-    [Min(1)] public int quantity = 1;  // Áİ´Â ¼ö·®
+    public ResourceItem item;          // ì‚¬ê³¼ SO í• ë‹¹ (ItemType = Food)
+    [Min(1)] public int quantity = 1;  // ì¤ëŠ” ìˆ˜ëŸ‰
 
     [Header("Interaction")]
     public string playerTag = "Player";
-    //public GameObject hintUI;          // "F: Áİ±â" ¾È³»(¼±ÅÃ)
+    //public GameObject hintUI;          // "F: ì¤ê¸°" ì•ˆë‚´(ì„ íƒ)
 
-    private static Text sharedHintText; // ÇÁ¸®ÆÕ¿¡ ÀÚµ¿ ÇÒ´ç ½ÃÄÑÁÙ º¯¼ö
+    private static Text sharedHintText; // í”„ë¦¬íŒ¹ì— ìë™ í• ë‹¹ ì‹œì¼œì¤„ ë³€ìˆ˜
 
-    // ¾È³» ÅØ½ºÆ® ex) FÅ°¸¦ ´­·¯ ½ÀµæÇÏ¼¼¿ä
+    // ì•ˆë‚´ í…ìŠ¤íŠ¸ ex) Fí‚¤ë¥¼ ëˆŒëŸ¬ ìŠµë“í•˜ì„¸ìš”
     public Text hintText;
 
     private Inventory playerInventory;
@@ -25,50 +25,93 @@ public class PickUpItem : MonoBehaviour
     private void Reset()
     {
         var col = GetComponent<Collider2D>();
-        col.isTrigger = true; // Æ®¸®°Å ÀÚµ¿ ¼¼ÆÃ
+        col.isTrigger = true; // íŠ¸ë¦¬ê±° ìë™ ì„¸íŒ…
     }
 
     private void Awake()
     {
-        // ½ºÇÁ¶óÀÌÆ® ÀÚµ¿ ÁöÁ¤ (±âÁ¸ ÄÚµå À¯Áö)
+        // ìŠ¤í”„ë¼ì´íŠ¸ ìë™ ì§€ì • (ê¸°ì¡´ ì½”ë“œ ìœ ì§€)
         var sr = GetComponent<SpriteRenderer>();
         if (sr && item && item.icon) sr.sprite = item.icon;
+    }
 
-        // 1) sharedHintText°¡ ¾ÆÁ÷ ¾øÀ¸¸é ÇÑ ¹ø¸¸ Ã£±â
+    private void Start()
+    {
+        Debug.Log($"[{gameObject.name}] Start ì‹œì‘ - hintText: {hintText != null}, sharedHintText: {sharedHintText != null}");
+        
+        // 1) sharedHintTextê°€ ì•„ì§ ì—†ìœ¼ë©´ ì”¬ì—ì„œ ì°¾ê¸°
         if (sharedHintText == null)
         {
-            // ÀÎ½ºÆåÅÍ¿¡¼­ ³Ö¾îÁáÀ¸¸é ±×°É »ç¿ë
+            Debug.Log($"[{gameObject.name}] sharedHintTextê°€ null, ì°¾ëŠ” ì¤‘...");
+            
+            // ì¸ìŠ¤í™í„°ì—ì„œ ë„£ì–´ì¤¬ìœ¼ë©´ ê·¸ê±¸ ì‚¬ìš©
             if (hintText != null)
             {
                 sharedHintText = hintText;
+                Debug.Log($"[{gameObject.name}] Inspectorì—ì„œ í• ë‹¹ëœ hintText ì‚¬ìš©!");
             }
+
+        }
+        else
+        {
+            Debug.Log($"[{gameObject.name}] sharedHintText ì´ë¯¸ ìˆìŒ (ì¬ì‚¬ìš©)");
         }
 
         hintText = sharedHintText;
+        Debug.Log($"[{gameObject.name}] hintText ìµœì¢… í• ë‹¹: {hintText != null}");
 
-
-        // 3) ±âº» »óÅÂ´Â ²¨µÎ±â + ±âº» ¹®±¸ ¼³Á¤
+        // 3) ê¸°ë³¸ ìƒíƒœëŠ” êº¼ë‘ê¸° + ê¸°ë³¸ ë¬¸êµ¬ ì„¤ì •
         if (hintText)
         {
             hintText.gameObject.SetActive(false);
             if (item)
-                hintText.text = $"F Å°·Î {item.itemName} ½Àµæ";
+                hintText.text = $"F í‚¤ë¡œ {item.itemName} ìŠµë“";
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"[{gameObject.name}] OnTriggerEnter2D - Tag: {other.tag}");
+        
         if (!other.CompareTag(playerTag)) return;
+
+        // âœ… hintTextê°€ nullì´ë©´ ë‹¤ì‹œ ì°¾ê¸° (Startì—ì„œ ì‹¤íŒ¨í•œ ê²½ìš° ëŒ€ë¹„)
+        if (hintText == null)
+        {
+            Debug.LogWarning($"[{gameObject.name}] hintTextê°€ null! ë‹¤ì‹œ ì°¾ëŠ” ì¤‘...");
+            
+            if (sharedHintText == null)
+            {
+                GameObject hintObj = GameObject.Find("HintText");
+                if (hintObj != null)
+                {
+                    sharedHintText = hintObj.GetComponent<Text>();
+                    Debug.Log($"[{gameObject.name}] OnTriggerì—ì„œ HintText ì°¾ìŒ!");
+                }
+            }
+            hintText = sharedHintText;
+        }
 
         playerInventory = other.GetComponent<Inventory>() ?? other.GetComponentInParent<Inventory>();
         inRange = playerInventory != null;
 
+        Debug.Log($"[{gameObject.name}] í”Œë ˆì´ì–´ ê°ì§€! inRange: {inRange}, hintText: {hintText != null}");
+
         //if (inRange && hintUI) hintUI.SetActive(true);
 
-        // ÈùÆ® ¹®±¸ ¼¼ÆÃ
+        // íŒíŠ¸ ë¬¸êµ¬ ì„¸íŒ…
         if (inRange)
         {
-            if (hintText) { hintText.text = $"F Å°¸¦ ´­·¯ {item.itemName} ½ÀµæÇÏ±â"; hintText.gameObject.SetActive(true); }
+            if (hintText) 
+            { 
+                hintText.text = $"F í‚¤ë¥¼ ëˆŒëŸ¬ {item.itemName} ìŠµë“í•˜ê¸°"; 
+                hintText.gameObject.SetActive(true); 
+                Debug.Log($"[{gameObject.name}] íŒíŠ¸ í…ìŠ¤íŠ¸ í™œì„±í™”!");
+            }
+            else
+            {
+                Debug.LogWarning($"[{gameObject.name}] hintTextê°€ nullì´ì–´ì„œ íŒíŠ¸ë¥¼ í‘œì‹œí•  ìˆ˜ ì—†ìŒ!");
+            }
             //if (hintUI) { hintUI.SetActive(true); }
         }
     }
@@ -95,20 +138,20 @@ public class PickUpItem : MonoBehaviour
     {
         if (item == null)
         {
-            Debug.LogWarning("PickupResourceItem2D: itemÀÌ ºñ¾î ÀÖ½À´Ï´Ù.");
+            Debug.LogWarning("PickupResourceItem2D: itemì´ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.");
             return;
         }
 
-        // ¹«°Ô/½ºÅÃ Á¦ÇÑÀº Inventory.TryAdd ¾È¿¡¼­ Ã³¸®
+        // ë¬´ê²Œ/ìŠ¤íƒ ì œí•œì€ Inventory.TryAdd ì•ˆì—ì„œ ì²˜ë¦¬
         if (playerInventory.TryAdd(item, quantity))
         {
             if (hintText) hintText.gameObject.SetActive(false);
             //if (hintUI) hintUI.SetActive(false);
-            Destroy(gameObject); // ¼º°ø ½Ã ¾À¿¡¼­ Á¦°Å
+            Destroy(gameObject); // ì„±ê³µ ì‹œ ì”¬ì—ì„œ ì œê±°
         }
         else
         {
-            Debug.Log("ÀÎº¥Åä¸®°¡ °¡µæÀÌ°Å³ª ¹«°Ô Á¦ÇÑ ÃÊ°úÀÔ´Ï´Ù.");
+            Debug.Log("ì¸ë²¤í† ë¦¬ê°€ ê°€ë“ì´ê±°ë‚˜ ë¬´ê²Œ ì œí•œ ì´ˆê³¼ì…ë‹ˆë‹¤.");
         }
     }
 }
