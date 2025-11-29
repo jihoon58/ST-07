@@ -1,4 +1,5 @@
 using ST07.Enemies;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,6 +8,12 @@ namespace ST07.Player
 {
     public class PlayerStats : MonoBehaviour
     {
+        private void Awake()
+        {
+           DontDestroyOnLoad(gameObject);
+        }
+        
+
         [Header("Health")]
         public float maxHealth = 100f;
         public float currentHealth = 100f;

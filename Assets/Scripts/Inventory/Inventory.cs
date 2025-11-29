@@ -11,10 +11,10 @@ public class ItemStack
     public int quantity;
 
     public float TotalWeight => item != null ? item.weight * quantity : 0f;
-    }
+}
 
-    public class Inventory : MonoBehaviour
-    {
+public class Inventory : MonoBehaviour
+{
     [Header("Capacity")]
     [Tooltip("총 무게 제한 (kg)")]
     public float weightLimitKg = 50f;
@@ -37,6 +37,9 @@ public class ItemStack
         }
     }
 
+    /// <summary>
+    /// 아이템을 추가할 수 있는지 조건만 검사 (실제로 추가하지 않음)
+    /// </summary>
     public bool CanAdd(ItemDefinition item, int quantity)
     {
         if (item == null || quantity <= 0) return false;
@@ -44,11 +47,17 @@ public class ItemStack
         return newWeight <= weightLimitKg + 1e-4f;
     }
 
-    public bool TryAdd(ItemDefinition item, int quantity)
+    /// <summary>
+    /// 아이템을 인벤토리에 추가 (조건 검사 포함)
+    /// </summary>
+    /// <returns>성공 여부</returns>
+    public bool Add(ItemDefinition item, int quantity)
     {
+        // 조건 검사 - CanAdd() 호출
         if (!CanAdd(item, quantity)) return false;
 
-        // 스택 합치기
+        // 실제 추가 로직
+        // 1. 스택 가능한 아이템이면 기존 스택에 합치기
         if (item.maxStack > 1)
         {
             for (int i = 0; i < items.Count && quantity > 0; i++)
@@ -63,7 +72,7 @@ public class ItemStack
             }
         }
 
-
+        // 2. 남은 수량은 새 스택으로 추가
         while (quantity > 0)
         {
             int toStack = Mathf.Min(item.maxStack, quantity);
@@ -73,10 +82,14 @@ public class ItemStack
 
         OnInventoryChanged?.Invoke();
         return true;
+    }
 
-
-
-        
+    /// <summary>
+    /// TryAdd는 Add()의 별칭 (하위 호환성 유지)
+    /// </summary>
+    public bool TryAdd(ItemDefinition item, int quantity)
+    {
+        return Add(item, quantity);
     }
 
     public bool TryRemove(ItemDefinition item, int quantity)
