@@ -89,7 +89,7 @@ public class SceneTransitionTrigger : MonoBehaviour
             {
                 PlayerPrefs.SetString("BuildingType", buildingType);
             }
-            if (!string.IsNullOrEmpty(buildingIndex))
+            if (buildingIndex != 0)
             {
                 PlayerPrefs.SetInt("BuildingIndex", buildingIndex);
             }
