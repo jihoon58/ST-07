@@ -32,7 +32,7 @@ public class SceneTransitionTrigger : MonoBehaviour
     public string buildingType = "";
     
     [Tooltip("건물 인덱스 - InBuilding 씬으로 이동할 때만 사용")]
-    public string buildingIndex = "";
+    public int buildingIndex = 0;
     
     private bool isPlayerInRange = false;
     private GameObject playerObject;
@@ -91,7 +91,7 @@ public class SceneTransitionTrigger : MonoBehaviour
             }
             if (!string.IsNullOrEmpty(buildingIndex))
             {
-                PlayerPrefs.SetString("BuildingIndex", buildingIndex);
+                PlayerPrefs.SetInt("BuildingIndex", buildingIndex);
             }
         }
         
