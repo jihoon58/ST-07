@@ -3,6 +3,9 @@ using ST07.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 아이템 습득
+/// </summary>
 [RequireComponent(typeof(BoxCollider2D))]
 public class PickUpItem : MonoBehaviour
 {

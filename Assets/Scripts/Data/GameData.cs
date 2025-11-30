@@ -2,6 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 안씀 삭제해애함 
+// HERE
+
+// GameData를 Data.Player.cs와 Data.Building.cs와 Data.Inventory.cs로 나누어서 관리할 예정
+// HERE
 namespace ST07.Data
 {
     public class GameData

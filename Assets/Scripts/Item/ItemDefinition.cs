@@ -9,10 +9,6 @@ namespace ST07.Items
         [Tooltip("아이템 이름")]
         public string itemName = "New Item";
         
-        [Tooltip("아이템 설명")]
-        [TextArea(3, 5)]
-        public string description = "";
-        
         [Tooltip("아이템 아이콘")]
         public Sprite icon;
         
@@ -22,10 +18,8 @@ namespace ST07.Items
 
         [Header("Stack")]
         [Tooltip("최대 스택 크기 (1 = 스택 불가)")]
-        [Min(1)]
+        [Range(1, 99)]
         public int maxStack = 1;
-
-        public GameObject worldPrefab;
     }
 }
 

@@ -2,6 +2,9 @@ using UnityEngine;
 using ST07.Player;
 using ST07.Items;
 
+// 안씀 삭제해애함 
+// HERE
+
 namespace ST07.Player
 {
     public class ItemUseController : MonoBehaviour
