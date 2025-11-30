@@ -2098,6 +2098,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9131599436739697981, guid: 64bf3ef65014d0b48a647586c8a02200, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2452,6 +2456,10 @@ PrefabInstance:
     - target: {fileID: 3717086849552029938, guid: 3fb6c7c288ae0104b8292e2cc6009c67, type: 3}
       propertyPath: m_Name
       value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 5674165948089641584, guid: 3fb6c7c288ae0104b8292e2cc6009c67, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8011289824403333368, guid: 3fb6c7c288ae0104b8292e2cc6009c67, type: 3}
       propertyPath: m_LocalPosition.x

@@ -40,6 +40,10 @@ namespace ST07.Enemies
         public GameObject alertIndicatorPrefab;
         //public NightBuffs nightBuffs;
 
+        [Header("Animation")]
+        public Animator animator;
+        public SpriteRenderer spriteRenderer;
+
         [Header("Alert Settings")]
         public float alertDuration = 0.8f;   // 아이콘이 떠 있는 시간(초)
         private bool hasSpottedPlayer = false;
@@ -55,7 +59,7 @@ namespace ST07.Enemies
         private float _idleSpeedJitter;
         private Vector2 _idlePhase;
 
-        private Rigidbody2D body;
+        private Rigidbody2D rb;
         private TimeOfDaySystem timeSystem;
         private State state = State.Idle;
         private float lastAttackTime = -999f;
@@ -63,7 +67,13 @@ namespace ST07.Enemies
 
         protected virtual void Awake()  // private → protected virtual
         {
-            body = GetComponent<Rigidbody2D>();
+            rb = GetComponent<Rigidbody2D>();
+            
+            // 애니메이터와 스프라이트 렌더러 자동 찾기
+            if (animator == null)
+                animator = GetComponent<Animator>();
+            if (spriteRenderer == null)
+                spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         void Start()
@@ -94,6 +104,7 @@ namespace ST07.Enemies
             UpdateState();
             UpdateAlertIcon();
             ActByState();
+            UpdateAnimation();  //  애니메이션 업데이트 추가
         }
 
         void UpdateState()
@@ -152,13 +163,13 @@ namespace ST07.Enemies
             switch (state)
             {
                 case State.Idle:
-                    body.linearVelocity = Vector2.Lerp(body.linearVelocity, GetIdleVelocity(), 0.15f);
+                    rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, GetIdleVelocity(), 0.15f);
                     break;
 
                 case State.Chase:
                     Vector2 toTarget = (target.position - transform.position);
                     Vector2 dir = toTarget.sqrMagnitude > 0.0001f ? toTarget.normalized : Vector2.zero;
-                    body.linearVelocity = dir * speed;
+                    rb.linearVelocity = dir * speed;
 
                     // (선택) FOV를 사용할 때만, 바라보는 방향을 이동방향과 맞춥니다.
                     if (useFOV && dir != Vector2.zero)
@@ -166,7 +177,7 @@ namespace ST07.Enemies
                     break;
 
                 case State.Attack:
-                    body.linearVelocity = Vector2.zero;
+                    rb.linearVelocity = Vector2.zero;
                     TryAttack();
                     break;
             }
@@ -263,5 +274,26 @@ namespace ST07.Enemies
         }
 
         void Die() => Destroy(gameObject);
+
+        // ==== 애니메이션 업데이트 (4방향: 상하좌우) ====
+        void UpdateAnimation()
+        {
+            if (animator == null) return;
+
+            Vector2 velocity = rb.linearVelocity;
+            bool isMoving = velocity.sqrMagnitude > 0.01f;
+
+            animator.SetBool("isMoving", isMoving);
+
+            if (isMoving)
+            {
+                // 이동 방향 정규화
+                Vector2 direction = velocity.normalized;
+
+                // Blend Tree 파라미터 업데이트 (좌우 애니메이션이 별도로 있으므로 음수값도 전달)
+                animator.SetFloat("directionX", direction.x);  // -1(왼쪽) ~ 1(오른쪽)
+                animator.SetFloat("directionY", direction.y);  // -1(아래) ~ 1(위)
+            }
+        }
     }
 }
