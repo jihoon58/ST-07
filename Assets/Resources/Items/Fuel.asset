@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Fuel
   m_EditorClassIdentifier: 
   itemName: Fuel
-  description: 
   icon: {fileID: 5979628931232385003, guid: fdaadbf9429b75c4cbded5b97bd6af6c, type: 3}
   weight: 5
-  maxStack: 1
-  worldPrefab: {fileID: 2913646344413540453, guid: 18f11675638c80341b31b83dfd8ff65a, type: 3}
+  maxStack: 99
   itemType: 4

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Scrap
   m_EditorClassIdentifier: 
   itemName: Scrap
-  description: 
   icon: {fileID: 8096459312978753757, guid: af59150d3a2454e47bb6021c046a27c0, type: 3}
   weight: 25
-  maxStack: 1
-  worldPrefab: {fileID: 575368500178453664, guid: 64bf3ef65014d0b48a647586c8a02200, type: 3}
+  maxStack: 99
   itemType: 1
