@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6070948887587644697}
   - component: {fileID: 4891932118084665727}
   - component: {fileID: 1543248412526615000}
+  - component: {fileID: -5340423695305312337}
   m_Layer: 0
   m_Name: BiterZombie
   m_TagString: Zombie
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.97, y: -2.14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5039557525232910165}
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -474194849
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -702216109411463647, guid: 328009c77da007a4698b520c50c8c829, type: 3}
+  m_Sprite: {fileID: -7965182120405375208, guid: ceb15c0783d55074a9911dede6229eed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,8 +126,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.42, y: 1.67}
+  m_Offset: {x: 0.0021136508, y: -0.010564888}
+  m_Size: {x: 0.34230146, y: 0.83742297}
   m_Direction: 0
 --- !u!50 &4891932118084665727
 Rigidbody2D:
@@ -186,10 +187,34 @@ MonoBehaviour:
   target: {fileID: 0}
   headForAlertIcon: {fileID: 5039557525232910165}
   alertIndicatorPrefab: {fileID: 3562246482745101329, guid: eaa2167d6c71121489caf94fb6e30231, type: 3}
+  animator: {fileID: -5340423695305312337}
+  spriteRenderer: {fileID: 2625085993601018382}
   alertDuration: 0.8
   idleRadius: 0.6
   idleMoveSpeed: 1.2
   idleSwaySpeed: 0.6
+--- !u!95 &-5340423695305312337
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13066836299569519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4ab31cf4e300684ea06e066792cd55f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1313639232280050134
 GameObject:
   m_ObjectHideFlags: 0
