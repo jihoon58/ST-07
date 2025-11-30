@@ -275,7 +275,7 @@ namespace ST07.Enemies
 
         void Die() => Destroy(gameObject);
 
-        // ==== 애니메이션 업데이트 (4방향: 상하좌우) ====
+        // ==== 애니메이션 업데이트 (간단 버전) ====
         void UpdateAnimation()
         {
             if (animator == null) return;
@@ -287,12 +287,17 @@ namespace ST07.Enemies
 
             if (isMoving)
             {
-                // 이동 방향 정규화
                 Vector2 direction = velocity.normalized;
+                animator.SetFloat("directionX", direction.x);
+                animator.SetFloat("directionY", direction.y);
 
-                // Blend Tree 파라미터 업데이트 (좌우 애니메이션이 별도로 있으므로 음수값도 전달)
-                animator.SetFloat("directionX", direction.x);  // -1(왼쪽) ~ 1(오른쪽)
-                animator.SetFloat("directionY", direction.y);  // -1(아래) ~ 1(위)
+                //if (spriteRenderer != null)
+                //{
+                //    if (direction.x < -0.01f)
+                //        spriteRenderer.flipX = true;
+                //    else if (direction.x > 0.01f)
+                //        spriteRenderer.flipX = false;
+                //}
             }
         }
     }

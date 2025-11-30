@@ -88,8 +88,13 @@ public class PlayerController_M : MonoBehaviour
 
             // 입력을 정규화 시켜서 변수에 저장시키고
             Vector2 normalizedInput = input.normalized;
-            animator.SetFloat("directionX", Mathf.Abs(normalizedInput.x)); // Blend Tree에 X 값을 절댓값으로 받아와서 엉뚱한 애니메이션이 실행 되지 않도록 방지함
+            
+            // 대각선 판단 (X와 Y가 둘 다 충분히 큰 경우)
+            bool isDiagonal = Mathf.Abs(normalizedInput.x) > 0.4f && Mathf.Abs(normalizedInput.y) > 0.4f;
+            
+            animator.SetFloat("directionX", Mathf.Abs(normalizedInput.x));
             animator.SetFloat("directionY", normalizedInput.y);
+            animator.SetBool("isDiagonal", isDiagonal);  // ✅ 대각선 여부 전달
 
             // X축을 기준으로 방향전환을 하는 건 오로지 SpireRenderer.flipX를 기준으로 구별함
             if (spriteRenderer != null)
@@ -104,6 +109,24 @@ public class PlayerController_M : MonoBehaviour
                 }
                 
                 //대각선 이동도 결국 X축을 기준으로 하기에 (0.7. 0,7) 과 같은 대각선 이동도 방향전환이 제대로 이루어짐
+            }
+        }
+        else  // Idle 상태 - 마지막 방향 유지
+        {
+            if (lastMoveInput.sqrMagnitude > 0.0001f)
+            {
+                // 마지막 이동 방향 정규화
+                Vector2 lastNormalized = lastMoveInput.normalized;
+                
+                // 대각선 판단 (마지막 방향 기준)
+                bool wasDiagonal = Mathf.Abs(lastNormalized.x) > 0.4f && Mathf.Abs(lastNormalized.y) > 0.4f;
+                
+                // Idle 애니메이션도 마지막 방향에 맞게 전환
+                animator.SetFloat("directionX", Mathf.Abs(lastNormalized.x));
+                animator.SetFloat("directionY", lastNormalized.y);
+                animator.SetBool("isDiagonal", wasDiagonal);  // ✅ Idle에서도 대각선 상태 유지
+                
+                // flipX 상태도 유지됨 (이미 설정되어 있음)
             }
         }
       

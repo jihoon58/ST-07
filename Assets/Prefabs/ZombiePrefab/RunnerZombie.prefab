@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7043865838189032721}
   - component: {fileID: 6194105994523183170}
   - component: {fileID: 8592579371600520738}
+  - component: {fileID: -4773478634977640967}
   m_Layer: 0
   m_Name: RunnerZombie
   m_TagString: Zombie
@@ -61,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.97, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3637912074231220864}
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: -474194849
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4671372128130151199, guid: 07eab44e140087341bd8fcdfbf426438, type: 3}
+  m_Sprite: {fileID: 4138257852085797640, guid: ad950d4be909d5645a3db09533f462b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,8 +157,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.41, y: 1.6}
+  m_Offset: {x: -0.007229149, y: -0.011566982}
+  m_Size: {x: 0.26775804, y: 0.84814304}
   m_Direction: 0
 --- !u!50 &6194105994523183170
 Rigidbody2D:
@@ -217,8 +218,32 @@ MonoBehaviour:
   target: {fileID: 0}
   headForAlertIcon: {fileID: 3637912074231220864}
   alertIndicatorPrefab: {fileID: 3562246482745101329, guid: eaa2167d6c71121489caf94fb6e30231, type: 3}
+  animator: {fileID: -4773478634977640967}
+  spriteRenderer: {fileID: 7758159097060185109}
   alertDuration: 0.8
   idleRadius: 0.6
   idleMoveSpeed: 1.2
   idleSwaySpeed: 0.6
   dashSpeedMultiplier: 3
+--- !u!95 &-4773478634977640967
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315672198257658859}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68a1961d66bb3ce45a1bc544f5f7600c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
