@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36609c9ff2a915b4c9888914605eeb3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkerZombiePrefab: {fileID: 0}
-  runnerZombiePrefab: {fileID: 0}
-  biterZombiePrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
+  walkerZombiePrefab: {fileID: 1373569722}
+  runnerZombiePrefab: {fileID: 1617640287}
+  biterZombiePrefab: {fileID: 306861501}
+  spawnPoint: {fileID: 2037299966}
 --- !u!4 &58846091
 Transform:
   m_ObjectHideFlags: 0
@@ -228,6 +228,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a885f4e8b26134e9d9a13099d97b10, type: 3}
+--- !u!1 &306861501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 13066836299569519, guid: eaa4943ecf7b4cf45a41b8fa25d6b37d, type: 3}
+  m_PrefabInstance: {fileID: 2041826144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &400316642
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 400316642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.99, y: -5.584801, z: -0.024618205}
+  m_LocalPosition: {x: -27.61, y: 15.23, z: -0.024618205}
   m_LocalScale: {x: 0.47, y: 0.47, z: 0.47}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -723,7 +728,7 @@ Transform:
   m_GameObject: {fileID: 890221932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.17, y: -5.584801, z: -0.024618205}
+  m_LocalPosition: {x: -20.79, y: 15.23, z: -0.024618205}
   m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -902,12 +907,17 @@ Transform:
   m_GameObject: {fileID: 1208884108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.58, y: 0, z: 0}
+  m_LocalPosition: {x: -27.2, y: 20.8148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1373569722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9191431341760961387, guid: 07a885f4e8b26134e9d9a13099d97b10, type: 3}
+  m_PrefabInstance: {fileID: 74048937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1385442069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1258,7 @@ Transform:
   m_GameObject: {fileID: 1614897982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.5, y: -0.6, z: -0.024618205}
+  m_LocalPosition: {x: -28.09, y: -0.6, z: -0.024618205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1307,11 +1317,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3387319181464859853, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387319181464859853, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387319181464859853, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4780720426310373332, guid: ae2c285ad4701dc448e23211bfac145e, type: 3}
+    - target: {fileID: 3387319181464859853, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce91e935d7c4d44aae5f3a3acfcffa0, type: 3}
+--- !u!1 &1617640287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1315672198257658859, guid: 60c7185e2c96f474b8fde4499e93b17d, type: 3}
+  m_PrefabInstance: {fileID: 1473877706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1761087241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4482721510109376248, guid: 0304371efae49dc4b9bb52e418fa71c2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3336350621507308780, guid: 469b7c0a8e414ef48b83f200d42099da, type: 3}
     - target: {fileID: 5170449725128341159, guid: 0304371efae49dc4b9bb52e418fa71c2, type: 3}
       propertyPath: m_Name
       value: Canvas
