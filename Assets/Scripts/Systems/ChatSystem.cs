@@ -3,7 +3,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+/// <summary>
+/// 대화 시스템
+/// </summary>
 
+// HERE
 public class ChatSystem : MonoBehaviour
 {
     #region 싱글톤

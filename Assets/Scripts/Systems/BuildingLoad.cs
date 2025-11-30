@@ -29,21 +29,24 @@ namespace ST07.Systems{
         {
             fieldItemList = new List<FieldItem>();
             LoadJsonFile();
-            loadBG();
+            LoadBG();
             SpawnItems();
         }
 
         private void LoadJsonFile(){
+            // json 파일 경로 설정
             string filePath = Path.Combine(Application.persistentDataPath, jsonFileName);
             if (!File.Exists(filePath)) {
                 Debug.LogError($"JSON 파일을 찾을 수 없습니다: {filePath}");
                 return;
             }
+            // json 파일 읽기
             string json = File.ReadAllText(filePath);
             if (string.IsNullOrEmpty(json)) {
                 Debug.LogError("JSON 파일이 비어있습니다.");
                 return;
             }
+            // json 파일 파싱
             data = JsonUtility.FromJson<Building.BuildingData>(json);
             if (data == null) {
                 Debug.LogError("JSON 파일을 파싱할 수 없습니다.");
@@ -52,20 +55,23 @@ namespace ST07.Systems{
         }
 
         private void SpawnItems(){
+            // 건물 정보 가져오기
             string type = PlayerPrefs.GetString("BuildingType", "");
             int index = PlayerPrefs.GetInt("BuildingIndex", 0);
             if (string.IsNullOrEmpty(type) || index == 0) {
                 Debug.LogError($"건물 정보가 없습니다. type: {type}, index: {index}");
                 return;
             }
+            // 건물 아이템 가져오기
             itemList = data.getItemList(type, index);
+            // 건물 아이템 생성
             foreach (var item in itemList) {
                 fieldItemList.Add(Instantiate(itemPrefab, new Vector3(item.itemPos.x, item.itemPos.y, 0), Quaternion.identity).GetComponent<FieldItem>());
                 fieldItemList[fieldItemList.Count - 1].set(item.itemName, item.itemCount);
             }
         }
     
-        private void loadBG(){
+        private void LoadBG(){
             string type = PlayerPrefs.GetString("BuildingType", "");
             switch (type) {
                 case "home":

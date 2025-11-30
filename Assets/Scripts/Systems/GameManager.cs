@@ -1,6 +1,10 @@
 using UnityEngine;
-using UnityEngine.Events;
 
+/// <summary>
+/// 게임 매니저
+/// </summary>
+
+// HERE
 public class GameManager : MonoBehaviour
 {
     #region 싱글톤
@@ -16,12 +20,5 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    [Header("Event")]
-    public UnityEvent onClick;
     
-    private void Update(){
-        if(Input.GetMouseButtonDown(0)){
-            onClick?.Invoke();
-        }
-    }
 }

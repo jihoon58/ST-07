@@ -28,7 +28,12 @@ namespace ST07.Systems
         [Range(0f, 24f)] public float nightEndHours = 7.5f; // 밤 종료 시간
 
         [Header("Current State")]
-        [Range(0f, 24f)] public float currentTimeHours = 9f; // 현재 시간 변수. AM 9시부터 시작
+        [Range(0f, 24f)] private float currentTimeHours = 9f; // 현재 시간 변수. AM 9시부터 시작
+        public string CurrentTimeHours{
+            get{
+                return currentTimeHours.ToString("00") + ":" + (currentTimeHours%1f*3f/5f).ToString("00");
+            }
+        }
         public int dayCount = 1; // 1일차부터 시작
 
         [Header("Events")]
@@ -49,13 +54,8 @@ namespace ST07.Systems
 
         private void Update()
         {
-            //필요성을 느끼지 못해 주석처리 차후에 필요하면 주석 해제하세요
-            // if (dayLengthSeconds <= 0.01f)
-            // {
-            //     return;
-            // }
-            
-            currentTimeHours += (Time.deltaTime / dayLengthSeconds) * 24f;
+            // 시간 증가
+            currentTimeHours += Time.deltaTime / dayLengthSeconds * 24f;
 
             // 하루 종료 처리
             if (currentTimeHours >= 24f)
@@ -65,6 +65,7 @@ namespace ST07.Systems
                 onNextDay?.Invoke(); // 다음 날 이벤트 실행
             }
 
+            // 밤 상태 처리
             if(IsNight != wasNight){
                 // wasNight를 쓴 이유는 IsNight의 계산을 생략하기 위해서이다.
                 if(wasNight){
@@ -78,22 +79,8 @@ namespace ST07.Systems
 
         public void SkipHours(float hours)
         {
-            //필요성을 느끼지 못해 주석처리 차후에 필요하면 주석 해제하세요
-            // if (dayLengthSeconds <= 0.01f)
-            // {
-            //     return;
-            // }
-
             //식사 처리해주세요.
             // HERE
-
-
-
-            // 1차 수정 코드. 차후를 위해서 2차 수정코드로 개선
-            // if(currentTimeHours >= 24f){
-            //     currentTimeHours -= 24f;
-            //     dayCount++;
-            // }
 
             // 2차 수정 코드
             currentTimeHours += hours; // 시간 증가

@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections;
+using ST07.Systems;
 public class UIManager : MonoBehaviour
 {
     [Header("Ref")]
     public GameObject mainCanvas;   
     public GameObject player;
     public Text hintText;
+    public Text timeText;
     #region 싱글톤
     public static UIManager instance;
     private void Awake(){
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
         // 시작화면에서 불필요한 요소 비활성화
         mainCanvas.SetActive(false);
         player.SetActive(false);
+        timeText.text = "09:00 AM";
 
         // 게임에서 가지고 다닐 요소 DontDestroyOnLoad
         DontDestroyOnLoad(mainCanvas);
@@ -58,6 +61,10 @@ public class UIManager : MonoBehaviour
         hintText.text = "";
     }
 
-
-
+    private IEnumerator SetTimeTextCoroutine(){
+        while(true){
+            timeText.text = TimeOfDaySystem.instance.CurrentTimeHours;
+            yield return new WaitForSeconds(1f);
+        }
+    }   
 }
