@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4293859c680d0d2429a83068c440a16d, type: 3}
   m_Name: BuildingBg
   m_EditorClassIdentifier: 
-  homeBg: {fileID: 7635013726552783190, guid: e2e7f16df61169a42b8b0e21e12b762c, type: 3}
+  homeBg: {fileID: 2088424657751549658, guid: 5a830336f2b638d4e9a7984bdb8148b7, type: 3}
   CVSBg: {fileID: 0}
-  martBg: {fileID: 0}
+  martBg: {fileID: 3488177311629703319, guid: 1ce4474d7f5dc6a499e242dce52e8ed2, type: 3}

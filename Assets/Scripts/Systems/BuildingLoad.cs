@@ -14,13 +14,17 @@ namespace ST07.Systems{
         [Tooltip("JSON 파일 이름")]
         public string jsonFileName = "BuildingData.json";
 
+        [Header("Prefab")]
+
         [Tooltip("아이템 프리팹")]
         public GameObject itemPrefab;
+        public GameObject homeBgPrefab;
+        public GameObject CVSBgPrefab;
+        public GameObject martBgPrefab;
 
         private Building.BuildingData data;
         private List<Building.Item> itemList;
         private List<FieldItem> fieldItemList;
-        public GameObject bg;
         private void Start()
         {
             fieldItemList = new List<FieldItem>();
@@ -65,13 +69,13 @@ namespace ST07.Systems{
             string type = PlayerPrefs.GetString("BuildingType", "");
             switch (type) {
                 case "home":
-                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").homeBg;
+                    Instantiate(homeBgPrefab, Vector3.zero, Quaternion.identity);
                     break;
                 case "CVS":
-                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").CVSBg;
+                    Instantiate(CVSBgPrefab, Vector3.zero, Quaternion.identity);
                     break;
                 case "mart":
-                    bg.GetComponent<SpriteRenderer>().sprite = Resources.Load<BuildingSO>("Map/BuildingBg").martBg;
+                    Instantiate(martBgPrefab, Vector3.zero, Quaternion.identity);
                     break;
             }
         }

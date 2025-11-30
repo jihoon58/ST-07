@@ -37,19 +37,19 @@ public class TransitionSceneManager : MonoBehaviour
       asyncOperation.allowSceneActivation = false;
 
       // 로드 진행률 변수
-      float progress = 0f;
+      float progress = 1f;
 
       // 로드 진행률 표시
       while (!asyncOperation.isDone)
       {
-         progress  = Mathf.Lerp(progress, asyncOperation.progress, 0.95f);
+         progress  = Mathf.Lerp(progress, 1 - asyncOperation.progress/0.9f, 0.9f);
          progressImage.fillAmount = progress;
-         progressText.text = $"{Mathf.RoundToInt(progress * 100f)}%";
+         progressText.text = $"{Mathf.RoundToInt((1 - progress) * 100f)}%";
          yield return null;
          
          if(asyncOperation.progress >= 0.9f){
             // 로드 완료 시 진행률 100%로 설정
-            progressImage.fillAmount = 1f;
+            progressImage.fillAmount = 0f;
             progressText.text = "100%";
 
             break;

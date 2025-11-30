@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a8d796db0a764e46a51b5568c0cc64f
+guid: 1ce4474d7f5dc6a499e242dce52e8ed2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7469217109671491038
-    second: Bunker1_0
+      213: 3488177311629703319
+    second: MartIn_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bunker1_0
+      name: MartIn_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 854
+        height: 480
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed53d3c336df7a760800000000000000
-      internalID: 7469217109671491038
+      spriteID: 798f345a8ce786030800000000000000
+      internalID: 3488177311629703319
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bunker1_0: 7469217109671491038
+      MartIn_0: 3488177311629703319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
