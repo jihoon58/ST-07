@@ -10,22 +10,16 @@ public class SceneTransitionTrigger : MonoBehaviour
     [Tooltip("전환할 씬 이름")]
     public string targetSceneName;
     
-    [Tooltip("Transition Scene을 거쳐서 전환할지 여부")]
-    public bool useTransitionScene = true;
-    
     [Header("Trigger Settings")]
     [Tooltip("트리거 반응 태그")]
-    public string triggerTag = "Player";
+    private string triggerTag = "Player";
     
-    [Tooltip("상호작용 키 입력이 필요한지 여부")]
-    public bool requiresInteraction = false;
-    
-    [Tooltip("상호작용 키 (기본: E)")]
-    public KeyCode interactionKey = KeyCode.E;
+    [Tooltip("상호작용 키")]
+    private KeyCode interactionKey = KeyCode.F;
     
     [Header("Visual Feedback")]
     [Tooltip("상호작용 가능할 때 표시할 UI 텍스트")]
-    public string interactionPrompt = "E키를 눌러 이동";
+    private string hintText = "F키를 눌러 이동";
     
     [Header("Building Settings")]
     [Tooltip("건물 타입 (home, CVS, Mart 등) - InBuilding 씬으로 이동할 때만 사용")]
@@ -33,47 +27,45 @@ public class SceneTransitionTrigger : MonoBehaviour
     
     [Tooltip("건물 인덱스 - InBuilding 씬으로 이동할 때만 사용")]
     public int buildingIndex = 0;
-    
+
     private bool isPlayerInRange = false;
-    private GameObject playerObject;
     
+    
+    /// <summary>
+    /// 플레이어가 트리거 영역에 들어올 때 호출
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(triggerTag))
         {
+            UIManager.instance.SetHintText(hintText);
             isPlayerInRange = true;
-            playerObject = collision.gameObject;
-            
-            if (!requiresInteraction)
-            {
-                // 즉시 전환
-                TransitionToScene();
-            }
-            else
-            {
-                // 상호작용 UI 표시 (추후 구현 가능)
-                Debug.Log(interactionPrompt);
-            }
         }
     }
-    
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag(triggerTag))
-        {
-            isPlayerInRange = false;
-            playerObject = null;
-        }
-    }
-    
+
     private void Update()
     {
-        if (requiresInteraction && isPlayerInRange && Input.GetKeyDown(interactionKey))
+        if (isPlayerInRange && Input.GetKeyDown(interactionKey))
         {
             TransitionToScene();
         }
     }
     
+    /// <summary>
+    /// 플레이어가 트리거 영역을 벗어날 때 호출
+    /// </summary>
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(triggerTag))
+        {
+            UIManager.instance.FalseHintText();
+            isPlayerInRange = false;
+        }
+    }
+    
+    /// <summary>
+    /// 씬 전환
+    /// </summary>
     private void TransitionToScene()
     {
         if (string.IsNullOrEmpty(targetSceneName))
@@ -95,35 +87,9 @@ public class SceneTransitionTrigger : MonoBehaviour
             }
         }
         
-        if (useTransitionScene)
-        {
-            // Transition Scene을 거쳐서 전환
-            PlayerPrefs.SetString("NextKey", targetSceneName);
-            SceneManager.LoadScene("Transition Scene");
-        }
-        else
-        {
-            // 직접 전환
-            SceneManager.LoadScene(targetSceneName);
-        }
-    }
-    
-    private void OnDrawGizmos()
-    {
-        // 에디터에서 트리거 영역 시각화
-        Gizmos.color = Color.yellow;
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null)
-        {
-            if (col is BoxCollider2D boxCol)
-            {
-                Gizmos.DrawWireCube(transform.position + (Vector3)boxCol.offset, boxCol.size);
-            }
-            else if (col is CircleCollider2D circleCol)
-            {
-                Gizmos.DrawWireSphere(transform.position + (Vector3)circleCol.offset, circleCol.radius);
-            }
-        }
+        // Transition Scene을 거쳐서 전환
+        PlayerPrefs.SetString("NextScene", targetSceneName);
+        SceneManager.LoadScene("Transition Scene");
     }
 }
 

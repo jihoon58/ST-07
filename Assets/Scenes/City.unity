@@ -5100,11 +5100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
-  useTransitionScene: 1
-  triggerTag: Player
-  requiresInteraction: 1
-  interactionKey: 101
-  interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: Mart
   buildingIndex: 0
 --- !u!61 &694385130
@@ -6133,11 +6128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
-  useTransitionScene: 1
-  triggerTag: Player
-  requiresInteraction: 1
-  interactionKey: 101
-  interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: 
   buildingIndex: 0
 --- !u!61 &796995033
@@ -9026,11 +9016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Bunker
-  useTransitionScene: 1
-  triggerTag: Player
-  requiresInteraction: 1
-  interactionKey: 101
-  interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: 
   buildingIndex: 0
 --- !u!61 &1208884110
@@ -10006,11 +9991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
-  useTransitionScene: 1
-  triggerTag: Player
-  requiresInteraction: 1
-  interactionKey: 101
-  interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: CVS
   buildingIndex: 0
 --- !u!61 &1385442071
@@ -11444,11 +11424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
-  useTransitionScene: 1
-  triggerTag: Player
-  requiresInteraction: 1
-  interactionKey: 101
-  interactionPrompt: "E\uD0A4\uB97C \uB20C\uB7EC \uC774\uB3D9"
   buildingType: home
   buildingIndex: 1
 --- !u!61 &1564299859

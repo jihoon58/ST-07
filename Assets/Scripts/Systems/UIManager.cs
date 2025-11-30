@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Ref")]
     public GameObject mainCanvas;   
     public GameObject player;
-    
+    public Text hintText;
     #region 싱글톤
     public static UIManager instance;
     private void Awake(){
@@ -47,6 +48,14 @@ public class UIManager : MonoBehaviour
     public void OnLoadEnd(){
         mainCanvas.SetActive(true);
         player.SetActive(true);
+    }
+
+    public void SetHintText(string text){
+        hintText.text = text;
+    }
+
+    public void FalseHintText(){
+        hintText.text = "";
     }
 
 
