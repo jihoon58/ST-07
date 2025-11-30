@@ -337,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCanvas: {fileID: 1174598917}
   player: {fileID: 978756143357788467}
+  hintText: {fileID: 784926415}
 --- !u!1 &417528163
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &784926415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,8 +2955,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1393212637
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -4780720426310373332, guid: ae2c285ad4701dc448e23211bfac145e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

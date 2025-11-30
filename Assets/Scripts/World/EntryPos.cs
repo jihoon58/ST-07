@@ -1,5 +1,9 @@
 using UnityEngine;
+using ST07.Player;
 
+/// <summary>
+/// 시작 위치
+/// </summary>
 public class EntryPos : MonoBehaviour
 {
     [Header("Ref")]
@@ -9,9 +13,8 @@ public class EntryPos : MonoBehaviour
     /// <summary>
     /// 씬 전환 시 플레이어 위치 설정
     /// </summary>
-    
     private void Start(){
-        player = FindFirstObjectByType<PlayerController_M>().gameObject;
+        player = PlayerStats.instance.gameObject;
         SetPlayerPosition();
     }
 

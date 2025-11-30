@@ -1,20 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-
+using ST07.Player;
+using ST07.Systems;
 public class Bed : MonoBehaviour
 {
     public UnityEvent onBedEnter;
     public UnityEvent onBedExit;
 
-    private ST07.Systems.TimeOfDaySystem timeOfDaySystem;
     private bool isPlayerInRange = false;
-    private ST07.Player.PlayerStats playerStats;
-
-    private void Start(){
-        timeOfDaySystem = FindFirstObjectByType<ST07.Systems.TimeOfDaySystem>();
-        playerStats = FindFirstObjectByType<ST07.Player.PlayerStats>();
-    }
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player")){
             onBedEnter?.Invoke();
@@ -29,7 +23,7 @@ public class Bed : MonoBehaviour
     }
 
     private void Update(){
-        if(isPlayerInRange && Input.GetKeyDown(KeyCode.E)){
+        if(isPlayerInRange && Input.GetKeyDown(KeyCode.F)){
             sleep();
         }
     }
@@ -37,8 +31,8 @@ public class Bed : MonoBehaviour
     private void sleep(){
         // 검은 화면으로 전환
 
-        timeOfDaySystem.SkipHours(8);
-        playerStats.FatigueFull();
+        TimeOfDaySystem.instance.SkipHours(8);
+        PlayerStats.instance.FatigueFull();
         
         // 원래 화면으로 전환
         
