@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using ST07.Items;
 using ST07.Player;
-
+// 안씀 삭제해애함 
+// HERE
 namespace ST07.World
 {
     public class Lootable : MonoBehaviour, IInteractable

@@ -8,10 +8,7 @@ namespace ST07.Player
 {
     public class PlayerStats : MonoBehaviour
     {
-        private void Awake()
-        {
-           DontDestroyOnLoad(gameObject);
-        }
+        public static PlayerStats instance;
         
 
         [Header("Health")]

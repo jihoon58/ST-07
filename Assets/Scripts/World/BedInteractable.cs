@@ -4,6 +4,8 @@ using ST07.Player;
 using ST07.Systems;
 using ST07.Saving;
 
+// 안씀 삭제해애함 
+// HERE
 namespace ST07.World
 {
     public class BedInteractable : MonoBehaviour, IInteractable

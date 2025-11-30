@@ -94,7 +94,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
             return;
         }
 
-        GameObject dropPrefab = currentStack.item.worldPrefab;
+
+        // worldPrefab 부분 null로 바꿈 확인하셈
+        // HERE
+        GameObject dropPrefab = null;
         if (dropPrefab == null)
         {
             Debug.Log("DropItem: worldPrefab이 비어있음");

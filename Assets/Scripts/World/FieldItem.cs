@@ -1,26 +1,24 @@
 using UnityEngine;
-using ST07.Systems;
 using ST07.Items;
-using System;
-using UnityEngine.Events;
 
 namespace ST07.World{
     public class FieldItem : MonoBehaviour
     {
         public string itemName;
         public int quantity = 0;
-        public int weight = 0;
         public ItemDefinition itemDefinition;
 
         public Inventory inventory;
         [Header("Size Settings")]
         [Tooltip("모든 아이템이 이 크기(픽셀)로 표시됩니다")]
         public float targetSize = 64f;
+
+        private bool isPlayerInRange = false;
         
-        [Header("Events")]
-        public UnityEvent onItemEnter;
-        public UnityEvent onItemExit;
-        public UnityEvent onItemPickup;
+        // [Header("Events")]
+        // public UnityEvent onItemEnter;
+        // public UnityEvent onItemExit;
+        // public UnityEvent onItemPickup;
 
         public void set(string itemName, int quantity){
             this.itemName = itemName;
@@ -29,38 +27,28 @@ namespace ST07.World{
             setSprite();
         }
         private void setItemDefinition(){
-            // try{
-            //     resourceItem = Resources.Load<ResourceItem>("Items/" + itemName);
-            // }catch(Exception){
-            //     weaponItem = Resources.Load<WeaponItem>("Items/" + itemName);
-            // }
             itemDefinition = Resources.Load<ItemDefinition>("Items/" + itemName);
-            weight = (int)(itemDefinition.weight * quantity);
-            // try{
-            //     weight = (int)(resourceItem.weight * quantity);
-            // }catch(Exception){
-            //     weight = (int)(weaponItem.weight * quantity);
-            // }
         }
         private void Update(){
-            if(Input.GetKeyDown(KeyCode.F)){
-                if(inventory.CanAdd(itemDefinition, quantity)) {
-                    inventory.TryAdd(itemDefinition, quantity);
-                    onItemPickup?.Invoke();
-                    Destroy(gameObject);
-                }else {
-                    Debug.Log("Inventory is full");
+            if(isPlayerInRange && Input.GetKeyDown(KeyCode.F)){
+                    if(inventory.Add(itemDefinition, quantity)){
+                        Destroy(gameObject);
+                        Debug.Log("Item picked up");
+                    }else{
+                        Debug.Log("Item not picked up");
+                    }
                 }
-            }
         }
         private void OnTriggerEnter2D(Collider2D other){
             if(other.gameObject.CompareTag("Player")){
-                onItemEnter?.Invoke();
+                isPlayerInRange = true;
+                UIManager.instance.SetHintText("F 키를 눌러 아이템 습득");
             }
         }
         private void OnTriggerExit2D(Collider2D other){
             if(other.gameObject.CompareTag("Player")){
-                onItemExit?.Invoke();
+                isPlayerInRange = false;
+                UIManager.instance.FalseHintText();
             }
         }
     
