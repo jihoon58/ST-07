@@ -14,8 +14,8 @@ public class PlayerController_M : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
 
-    private Vector2 lastMoveInput;
-    private Vector2 currentInput; // Current frame's input
+    //private Vector2 lastMoveInput; // 마지막 이동했을 떄의 방향 확인용 백터변수
+    private Vector2 input; // 백터변수              
 
     private Rigidbody2D rb;
 
@@ -36,19 +36,19 @@ public class PlayerController_M : MonoBehaviour
         // Calculate input once per frame
         float vx = Input.GetAxisRaw("Horizontal");
         float vy = Input.GetAxisRaw("Vertical");
-        currentInput = new Vector2(vx, vy);
+        input = new Vector2(vx, vy);
 
         // Diagonal speed correction
-        if (currentInput.sqrMagnitude > 1f)
+        if (input.sqrMagnitude > 1f)
         {
-            currentInput = currentInput.normalized;
+            input = input.normalized;
         }
 
-        // Apply movement
-        Movement(currentInput);
+        //움직임
+        Movement(input);
 
-        // Update animation based on input
-        UpdateAnimation(currentInput);
+        // 애니메이션 효과적용
+        UpdateAnimation(input);
     }
 
     public void Movement(Vector2 input)
@@ -58,15 +58,15 @@ public class PlayerController_M : MonoBehaviour
         
         if (inventory != null)
         {
-            float currentWeight = inventory.CurrentWeight;
+            float currentWeight = inventory.CurrentWeight;   //현재의 무게 = 인벤토리의 무게
             
             // 1kg당 1% 속도 감소 (0.01 = 1%)
             // 예: 3kg → 3% 감소 → 0.97 배속
-            float penalty = currentWeight * 0.01f;  // kg당 1% 감소
+            float penalty = currentWeight * 0.01f;  // 1kg당 이동속도 1% 감소
             speedMultiplier = 1f - penalty;
             
             // 최소 속도 제한 (너무 느려지지 않도록)
-            speedMultiplier = Mathf.Max(speedMultiplier, 0.3f);  // 최소 30% 속도
+            speedMultiplier = Mathf.Max(speedMultiplier, 0.2f);  // 최소 20% 속도
         }
 
         Vector2 movement = input * speed * speedMultiplier;
@@ -81,52 +81,30 @@ public class PlayerController_M : MonoBehaviour
 
         bool isMoving = input.sqrMagnitude > 0.0001f;
         animator.SetBool("isMoving", isMoving);
-
+        
         if (isMoving)
         {
-            lastMoveInput = input;
-
-            // 입력을 정규화 시켜서 변수에 저장시키고
-            Vector2 normalizedInput = input.normalized;
             
             // 대각선 판단 (X와 Y가 둘 다 충분히 큰 경우)
-            bool isDiagonal = Mathf.Abs(normalizedInput.x) > 0.4f && Mathf.Abs(normalizedInput.y) > 0.4f;
-            
-            animator.SetFloat("directionX", Mathf.Abs(normalizedInput.x));
-            animator.SetFloat("directionY", normalizedInput.y);
+            bool isDiagonal = Mathf.Abs(input.x) > 0.5f && Mathf.Abs(input.y) > 0.5f;
+
+            animator.SetFloat("directionX", Mathf.Abs(input.x));
+            animator.SetFloat("directionY", input.y);
             animator.SetBool("isDiagonal", isDiagonal);  // ✅ 대각선 여부 전달
 
             // X축을 기준으로 방향전환을 하는 건 오로지 SpireRenderer.flipX를 기준으로 구별함
             if (spriteRenderer != null)
             {
-                if (normalizedInput.x < -0.01f)  // 왼쪽 이동을 하면?
+                if (input.x < -0.01f)  // 왼쪽 이동을 하면?
                 {
                     spriteRenderer.flipX = true; //방향전환 true
                 }
-                else if (normalizedInput.x > 0.01f)  // 오른쪽 이동을 하면?
+                else if (input.x > 0.01f)  // 오른쪽 이동을 하면?
                 {
                     spriteRenderer.flipX = false; //방향 전환 false
                 }
                 
                 //대각선 이동도 결국 X축을 기준으로 하기에 (0.7. 0,7) 과 같은 대각선 이동도 방향전환이 제대로 이루어짐
-            }
-        }
-        else  // Idle 상태 - 마지막 방향 유지
-        {
-            if (lastMoveInput.sqrMagnitude > 0.0001f)
-            {
-                // 마지막 이동 방향 정규화
-                Vector2 lastNormalized = lastMoveInput.normalized;
-                
-                // 대각선 판단 (마지막 방향 기준)
-                bool isDiagonal = Mathf.Abs(lastNormalized.x) > 0.4f && Mathf.Abs(lastNormalized.y) > 0.4f;
-                
-                // Idle 애니메이션도 마지막 방향에 맞게 전환
-                animator.SetFloat("directionX", Mathf.Abs(lastNormalized.x));
-                animator.SetFloat("directionY", lastNormalized.y);
-                animator.SetBool("isDiagonal", isDiagonal);  // ✅ Idle에서도 대각선 상태 유지
-                
-                // flipX 상태도 유지됨 (이미 설정되어 있음)
             }
         }
       
