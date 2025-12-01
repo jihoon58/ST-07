@@ -2,7 +2,6 @@ using ST07.Player;
 using ST07.Systems;
 using UnityEngine;
 using System.Threading;
-using Unity.VisualScripting;
 
 /// <summary>
 /// 엔딩 매니저
@@ -62,7 +61,9 @@ public class EndingManager : MonoBehaviour
 		isResearchEnd = true; // 연구 엔딩 완료
 
 		// 애니메이션 실행 (연구 100% 엔딩)
-        // HERE
+        UIManager.instance.FadeInBlackScreen(10f);
+        UIManager.instance.ResearchEndingScreen.SetActive(true);
+        UIManager.instance.FadeOutBlackScreen(10f);
     }
 
     // 플레이어 사망 엔딩 실행

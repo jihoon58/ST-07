@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public Text timeText;
     public Image researchBar;
     public Text researchText;
+    public GameObject blackScreen;
+    public GameObject ResearchEndingScreen;
 
     
     #region 싱글톤
@@ -63,6 +65,81 @@ public class UIManager : MonoBehaviour
         player.SetActive(true);
     }
 
+    /// <summary>
+    /// 검은 화면으로 페이드 인 (투명 → 불투명)
+    /// </summary>
+    /// <param name="duration">페이드 시간 (초, 기본값: 1초)</param>
+    public void FadeInBlackScreen(float duration)
+    {
+        StartCoroutine(FadeInCoroutine(duration));
+    }
+
+    /// <summary>
+    /// 검은 화면에서 페이드 아웃 (불투명 → 투명)
+    /// </summary>
+    /// <param name="duration">페이드 시간 (초, 기본값: 1초)</param>
+    public void FadeOutBlackScreen(float duration)
+    {
+        StartCoroutine(FadeOutCoroutine(duration));
+    }
+
+    /// <summary>
+    /// 페이드 인 코루틴
+    /// </summary>
+    private IEnumerator FadeInCoroutine(float duration)
+    {
+        Image image = blackScreen.GetComponent<Image>();
+
+        // blackScreen 활성화
+        blackScreen.SetActive(true);
+
+        Color color = image.color;
+        float startAlpha = color.a;
+        float targetAlpha = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            color.a = Mathf.Lerp(startAlpha, targetAlpha, t);
+            //??
+            image.color = color;
+            yield return null;
+        }
+
+        // 최종 알파 값 보장
+        color.a = targetAlpha;
+        //??
+        image.color = color;
+    }
+
+    /// <summary>
+    /// 페이드 아웃 코루틴
+    /// </summary>
+    private IEnumerator FadeOutCoroutine(float duration)
+    {
+        Image image = blackScreen.GetComponent<Image>();
+
+        Color color = image.color;
+        float startAlpha = color.a;
+        float targetAlpha = 0f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            color.a = Mathf.Lerp(startAlpha, targetAlpha, t);
+            image.color = color;
+            yield return null;
+        }
+
+        // 최종 알파 값 보장
+        color.a = targetAlpha;
+        image.color = color;
+        blackScreen.SetActive(false);
+    }
     public void SetHintText(string text){
         hintText.text = text;
     }
