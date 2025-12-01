@@ -18,7 +18,7 @@ public class EntryPos : MonoBehaviour
         SetPlayerPosition();
     }
 
-    public void SetPlayerPosition(){
+    private void SetPlayerPosition(){
         player.transform.position = entryPos.position;
     }
 }
