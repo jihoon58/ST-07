@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
+  mainCamera: {fileID: 872325013}
   firePos: {fileID: 1264969583}
   bulletPrefab: {fileID: 2942956069660880965, guid: b3a430d217dfddc4c83b1b493a7f4177, type: 3}
 --- !u!114 &208716395
@@ -2761,6 +2762,7 @@ MonoBehaviour:
   isWeaponEnd: 0
   isDeadEnd: 0
   doomsdayEnding: 0
+  isStarvationEnd: 0
   FoodResearchPercent: 0
   FoodResearchPerDay: 8
 --- !u!114 &1625997436
@@ -2826,6 +2828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb8755b2c57ae041bcc90844d0e203c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodPerDay: 0
 --- !u!1 &1707730581
 GameObject:
   m_ObjectHideFlags: 0

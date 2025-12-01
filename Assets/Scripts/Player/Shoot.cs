@@ -4,12 +4,10 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField]
     private float bulletSpeed;
-
+    public Camera mainCamera;
     public Transform firePos;
 
     public GameObject bulletPrefab;
-
-    private Camera mainCamera;
 
     private void Awake()
     {

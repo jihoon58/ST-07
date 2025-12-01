@@ -23,6 +23,7 @@ namespace ST07.World{
         public void set(string itemName, int quantity){
             this.itemName = itemName;
             this.quantity = quantity;
+            inventory = FindFirstObjectByType<Inventory>();
             setItemDefinition();
             setSprite();
         }
@@ -42,13 +43,17 @@ namespace ST07.World{
         private void OnTriggerEnter2D(Collider2D other){
             if(other.gameObject.CompareTag("Player")){
                 isPlayerInRange = true;
+                Debug.Log("Player in range");
                 UIManager.instance.SetHintText("F 키를 눌러 아이템 습득");
+                Debug.Log("Hint text set");
             }
         }
         private void OnTriggerExit2D(Collider2D other){
             if(other.gameObject.CompareTag("Player")){
                 isPlayerInRange = false;
+                Debug.Log("Player out of range");
                 UIManager.instance.FalseHintText();
+                Debug.Log("Hint text false");
             }
         }
     

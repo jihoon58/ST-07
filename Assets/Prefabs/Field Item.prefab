@@ -133,7 +133,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &5736412860443047799
 MonoBehaviour:
@@ -149,15 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   quantity: 0
-  weight: 0
   itemDefinition: {fileID: 0}
   inventory: {fileID: 0}
-  onItemEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onItemExit:
-    m_PersistentCalls:
-      m_Calls: []
-  onItemPickup:
-    m_PersistentCalls:
-      m_Calls: []
+  targetSize: 64

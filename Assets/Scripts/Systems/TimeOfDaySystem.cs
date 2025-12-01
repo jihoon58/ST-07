@@ -31,7 +31,7 @@ namespace ST07.Systems
         [Range(0f, 24f)] private float currentTimeHours = 9f; // 현재 시간 변수. AM 9시부터 시작
         public string CurrentTimeHours{
             get{
-                return currentTimeHours.ToString("00") + ":" + (currentTimeHours%1f*3f/5f).ToString("00");
+                return currentTimeHours.ToString("00") + ":" + (currentTimeHours%1f*60f).ToString("00");
             }
         }
         public int dayCount = 1; // 1일차부터 시작

@@ -9,7 +9,20 @@ namespace ST07.Player
     public class PlayerStats : MonoBehaviour
     {
         public static PlayerStats instance;
-        
+
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
 
         [Header("Health")]
         public float maxHealth = 100f;
