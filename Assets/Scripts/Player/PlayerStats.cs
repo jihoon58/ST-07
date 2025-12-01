@@ -9,7 +9,6 @@ namespace ST07.Player
     public class PlayerStats : MonoBehaviour
     {
         public static PlayerStats instance;
-
         private void Awake()
         {
             if (instance == null)
