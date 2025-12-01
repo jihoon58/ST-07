@@ -119,12 +119,12 @@ public class PlayerController_M : MonoBehaviour
                 Vector2 lastNormalized = lastMoveInput.normalized;
                 
                 // 대각선 판단 (마지막 방향 기준)
-                bool wasDiagonal = Mathf.Abs(lastNormalized.x) > 0.4f && Mathf.Abs(lastNormalized.y) > 0.4f;
+                bool isDiagonal = Mathf.Abs(lastNormalized.x) > 0.4f && Mathf.Abs(lastNormalized.y) > 0.4f;
                 
                 // Idle 애니메이션도 마지막 방향에 맞게 전환
                 animator.SetFloat("directionX", Mathf.Abs(lastNormalized.x));
                 animator.SetFloat("directionY", lastNormalized.y);
-                animator.SetBool("isDiagonal", wasDiagonal);  // ✅ Idle에서도 대각선 상태 유지
+                animator.SetBool("isDiagonal", isDiagonal);  // ✅ Idle에서도 대각선 상태 유지
                 
                 // flipX 상태도 유지됨 (이미 설정되어 있음)
             }

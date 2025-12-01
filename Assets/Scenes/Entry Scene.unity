@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7494238372447960417, guid: 3b187ef27b09a574e846b8009f29ed55, type: 3}
+  m_Sprite: {fileID: -7494238372447960417, guid: 76e12b97deb989245bee79f24182bb34, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3062,6 +3062,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910729456}
   m_CullTransparentMesh: 1
+--- !u!1 &2079845684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2079845685}
+  - component: {fileID: 2079845686}
+  m_Layer: 0
+  m_Name: BGMManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2079845685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079845684}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37310392, y: -1.7393384, z: 0.015657755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2079845686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079845684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7078dcb53569e4a898f2832aa4d16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainThemeClip: {fileID: 8300000, guid: 68764e312aa98264a9f835f4c22ca94b, type: 3}
+  cityClip: {fileID: 8300000, guid: c8b1620ba30c3cb44ae7da6d34dcbfe7, type: 3}
+  martClip: {fileID: 8300000, guid: a4c68759adc3397449a14e1a0ec02221, type: 3}
+  bunkerClip: {fileID: 8300000, guid: 8fddb080e0e4d964a9a9e62acff2dc53, type: 3}
 --- !u!1 &2093912081
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,6 +3228,7 @@ SceneRoots:
   - {fileID: 579029258}
   - {fileID: 1437315349}
   - {fileID: 1625997437}
+  - {fileID: 2079845685}
   - {fileID: 396159725}
   - {fileID: 1174598921}
   - {fileID: 208716397}
