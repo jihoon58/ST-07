@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     public GameObject player;
     public Text hintText;
     public Text timeText;
+    public Image researchBar;
+    public Text researchText;
+
+    
     #region 싱글톤
     public static UIManager instance;
     private void Awake(){
@@ -30,11 +34,17 @@ public class UIManager : MonoBehaviour
         // 시작화면에서 불필요한 요소 비활성화
         mainCanvas.SetActive(false);
         player.SetActive(false);
-        timeText.text = "09:00 AM";
 
         // 게임에서 가지고 다닐 요소 DontDestroyOnLoad
         DontDestroyOnLoad(mainCanvas);
         DontDestroyOnLoad(player);
+
+        // 연구 진행도 텍스트 설정
+        researchText.text = "0%";
+        researchBar.fillAmount = 0f;
+
+        StartCoroutine(SetTimeTextCoroutine());
+        StartCoroutine(SetResearchTextCoroutine());
     }
 
     /// <summary>
@@ -59,6 +69,14 @@ public class UIManager : MonoBehaviour
 
     public void FalseHintText(){
         hintText.text = "";
+    }
+
+    private IEnumerator SetResearchTextCoroutine(){
+        while(true){
+            researchText.text = EndingManager.instance.FoodResearchPercent.ToString() + "%";
+            researchBar.fillAmount = EndingManager.instance.FoodResearchPercent / 100f;
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private IEnumerator SetTimeTextCoroutine(){

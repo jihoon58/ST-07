@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   itemName: Water
-  description: 
   icon: {fileID: 6049605792901559095, guid: 7d4a8dc7146b7bf428419b3c8a31c19b, type: 3}
   weight: 25
-  maxStack: 1
-  worldPrefab: {fileID: 3717086849552029938, guid: 3fb6c7c288ae0104b8292e2cc6009c67, type: 3}
+  maxStack: 99
   itemType: 2

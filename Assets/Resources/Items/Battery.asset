@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Battery
   m_EditorClassIdentifier: 
   itemName: Battery
-  description: 
   icon: {fileID: -3017979480325208809, guid: e0ee30c9f552a374ebc25d456736b566, type: 3}
   weight: 1
-  maxStack: 1
-  worldPrefab: {fileID: 1693717593900380771, guid: 4763fdd0e50375d40a5a9759cf885710, type: 3}
+  maxStack: 99
   itemType: 3

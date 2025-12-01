@@ -26,6 +26,7 @@ public class EndingManager : MonoBehaviour
     public bool isWeaponEnd = false; // 무기연구 엔딩 완료 여부 (현재 미기획)
     public bool isDeadEnd = false; // 플레이어 사망 엔딩 완료 여부
     public bool doomsdayEnding = false; // 종말론자 엔딩 완료 여부
+    public bool isStarvationEnd = false; // 식량부족 엔딩 완료 여부
 
     [Header("Research State")]
     [Range(0, 100)] public float FoodResearchPercent = 0; // 식품연구 진행도(%)
@@ -45,6 +46,14 @@ public class EndingManager : MonoBehaviour
         FoodResearchPercent += FoodResearchPerDay / TimeOfDaySystem.dayLengthSeconds * Time.deltaTime; // 진행도 증가
     }
 
+    // 식량부족 엔딩 실행
+    public void StarvationEnding(){
+        if(isStarvationEnd) return; // 식량부족 엔딩 완료하면 반환
+        isStarvationEnd = true; // 식량부족 엔딩 완료
+
+        // 애니메이션 실행 (식량부족 엔딩)
+        // HERE
+    }
     // 연구 엔딩 실행
     public void ResearchEnding(){ 
 		if(isResearchEnd) return; // 연구 엔딩 완료하면 반환
