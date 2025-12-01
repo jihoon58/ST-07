@@ -8,7 +8,6 @@ namespace ST07.Data{
     /// </summary>
     public class Building
     {
-        #region BuildingData
         [Serializable]
         public class Type{
             public string type;
@@ -49,8 +48,5 @@ namespace ST07.Data{
                 return null;
             }
         }
-
-
-        #endregion
     }
 }

@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     private void Awake()
     {
         firePos = GetComponent<Transform>();
-        mainCamera = Camera.main;
+        // mainCamera = Camera.main;
     }
 
     void Update()

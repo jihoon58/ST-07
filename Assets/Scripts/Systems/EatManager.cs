@@ -15,7 +15,7 @@ public class EatManager : MonoBehaviour
         }
     }
     #endregion
-    public int foodPerDay = 0;
+    public int foodPerDay = 4;
 
     private void Start(){
         TimeOfDaySystem.instance.onNextDay.AddListener(EatFood);
@@ -32,7 +32,7 @@ public class EatManager : MonoBehaviour
     }
 
     public void NPCRecruited(){
-        foodPerDay += 5;
+        foodPerDay += 2;
     }
 
 

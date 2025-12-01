@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Scrap
   icon: {fileID: 8096459312978753757, guid: af59150d3a2454e47bb6021c046a27c0, type: 3}
-  weight: 25
+  weight: 1
   maxStack: 99
   itemType: 1

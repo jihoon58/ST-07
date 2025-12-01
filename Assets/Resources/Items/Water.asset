@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Water
   icon: {fileID: 6049605792901559095, guid: 7d4a8dc7146b7bf428419b3c8a31c19b, type: 3}
-  weight: 25
+  weight: 1
   maxStack: 99
   itemType: 2

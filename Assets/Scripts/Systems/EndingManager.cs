@@ -32,8 +32,9 @@ public class EndingManager : MonoBehaviour
     [Range(0, 100)] public float FoodResearchPercent = 0; // 식품연구 진행도(%)
     public float FoodResearchPerDay = 8; // 하루당 식품연구진행도 상승률(%)
 
+    public GameObject player;
     private void Start(){
-        PlayerStats.instance.onDead.AddListener(DeadEnding);
+        player.GetComponent<PlayerStats>().onDead.AddListener(DeadEnding);
     }
 
     // 연구 진행도 증가
@@ -60,7 +61,9 @@ public class EndingManager : MonoBehaviour
 		isResearchEnd = true; // 연구 엔딩 완료
 
 		// 애니메이션 실행 (연구 100% 엔딩)
-        // HERE
+        UIManager.instance.FadeInBlackScreen(10f);
+        UIManager.instance.ResearchEndingScreen.SetActive(true);
+        UIManager.instance.FadeOutBlackScreen(10f);
     }
 
     // 플레이어 사망 엔딩 실행
