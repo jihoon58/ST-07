@@ -85,12 +85,12 @@ public class Inventory : MonoBehaviour
     }
 
     /// <summary>
-    /// TryAdd는 Add()의 별칭 (하위 호환성 유지)
-    /// </summary>
-    public bool TryAdd(ItemDefinition item, int quantity)
-    {
-        return Add(item, quantity);
-    }
+/*    / TryAdd는 Add()의 별칭 (하위 호환성 유지)
+    / </summary>*/
+    //public bool TryAdd(ItemDefinition item, int quantity)
+    //{
+    //    return Add(item, quantity);
+    //}
 
     public bool TryRemove(ItemDefinition item, int quantity)
     {

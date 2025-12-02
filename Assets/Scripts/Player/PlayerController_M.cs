@@ -5,7 +5,6 @@ using ST07.Player;
 public class PlayerController_M : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;                 // 플레이어 Inventory 드래그 연결
-    [SerializeField, Range(0f, 1f)] private float fullMultiplier; // 꽉 찼을 때 배율
 
     [SerializeField] private float speed;
 
