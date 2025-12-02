@@ -29,7 +29,7 @@ namespace ST07.Player
 
         [Header("Fatigue")]
         public float maxFatigueSeconds = Systems.TimeOfDaySystem.dayLengthSeconds;
-        public float currentFatigueSeconds = Systems.TimeOfDaySystem.dayLengthSeconds;
+        public double currentFatigueSeconds = Systems.TimeOfDaySystem.dayLengthSeconds;
 
         public bool IsDead => currentHealth <= 0f || currentFatigueSeconds <= 0f;
 
@@ -38,6 +38,10 @@ namespace ST07.Player
 
         public Image healthFillImage;
 
+
+        void Update(){
+            ConsumeFatigueByDay( Time.deltaTime / Systems.TimeOfDaySystem.dayLengthSeconds );
+        }
         public void Heal(float amount)
         {
             if (amount <= 0f || IsDead) return;
@@ -72,9 +76,9 @@ namespace ST07.Player
             currentFatigueSeconds = maxFatigueSeconds;
         }
 
-        public void ConsumeFatigueByDay(float dayFraction)
+        public void ConsumeFatigueByDay(double dayFraction)
         {
-            currentFatigueSeconds -= Mathf.Max(0f, dayFraction);
+            currentFatigueSeconds -=  dayFraction;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
