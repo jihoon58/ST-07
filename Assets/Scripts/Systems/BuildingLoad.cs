@@ -77,11 +77,11 @@ namespace ST07.Systems{
                 case "home":
                     Instantiate(homeBgPrefab, Vector3.zero, Quaternion.identity);
                     break;
-                case "CVS":
-                    Instantiate(CVSBgPrefab, Vector3.zero, Quaternion.identity);
-                    break;
                 case "mart":
                     Instantiate(martBgPrefab, Vector3.zero, Quaternion.identity);
+                    break;
+                case "CVS":
+                    Instantiate(CVSBgPrefab, Vector3.zero, Quaternion.identity);
                     break;
             }
         }

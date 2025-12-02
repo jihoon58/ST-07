@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
   buildingType: Mart
-  buildingIndex: 0
+  buildingIndex: 3
 --- !u!61 &694385130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1711,7 +1711,7 @@ Transform:
   m_GameObject: {fileID: 890221932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.72, y: -8.33, z: -0.024618205}
+  m_LocalPosition: {x: -6.82, y: -8.33, z: -0.024618205}
   m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3017,7 +3017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: InBuilding
   buildingType: CVS
-  buildingIndex: 0
+  buildingIndex: 2
 --- !u!61 &1385442071
 BoxCollider2D:
   m_ObjectHideFlags: 0
