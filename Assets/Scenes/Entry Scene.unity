@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 208716392}
-  fullMultiplier: 0.3
   speed: 10
   animator: {fileID: 208716388}
 --- !u!212 &208716396
@@ -485,11 +484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579407804c9de3744820d4f138e578fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  inventory: {fileID: 208716392}
   inventoryPanel: {fileID: 585561294}
   slotsParent: {fileID: 2093912082}
   slotPrefab: {fileID: 4125532217650035065, guid: bc31220a2cff2ed4f9d59693db4d41f4, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 208716397}
   columns: 7
   rows: 7
   weightFill: {fileID: 1041601888}
@@ -1202,7 +1201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1029.908, y: 315}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &695756459
@@ -2236,15 +2235,15 @@ RectTransform:
   m_GameObject: {fileID: 1041601885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99096775, y: 0.99096775, z: 0.99096775}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 585561295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 142.1, y: 91.714}
-  m_SizeDelta: {x: 465.3734, y: 80.8428}
+  m_AnchoredPosition: {x: 119, y: 146}
+  m_SizeDelta: {x: 467, y: 76}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1041601887
 CanvasRenderer:

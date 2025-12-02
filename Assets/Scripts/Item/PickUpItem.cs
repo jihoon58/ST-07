@@ -146,7 +146,7 @@ public class PickUpItem : MonoBehaviour
         }
 
         // 무게/스택 제한은 Inventory.TryAdd 안에서 처리
-        if (playerInventory.TryAdd(item, quantity))
+        if (playerInventory.Add(item, quantity))
         {
             if (hintText) hintText.gameObject.SetActive(false);
             //if (hintUI) hintUI.SetActive(false);
